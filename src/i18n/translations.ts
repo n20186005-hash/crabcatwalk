@@ -30,11 +30,11 @@ export const translations: Record<Locale, Translations> = {
     rating: { reviews: "条评价", source: "Google 评论" },
     history: {
       title: "历史沿革与发展",
-      intro: `**蟹步道（Crab Catwalk / Passarela do Caranguejo）** 位于巴西塞尔希培州首府阿拉卡茹（Aracaju）的阿塔莱亚区（Atalaia），是该市最著名的海滨旅游景点之一。\n\n**景点特色**：蟹步道是一条著名的海滨木板步道，以其众多的蟹肉餐厅而闻名。这里不仅是品尝当地美味蟹料理的最佳去处，也是欣赏南美洲壮丽日落的热门地点。\n\n**文化意义**：作为阿拉卡茹重要的文化和旅游地标，蟹步道吸引了大量游客前来品尝美食、欣赏海景和体验当地的热带海滨文化。步道沿线有众多餐厅、酒吧和旅游设施，是体验巴西东北部海岸风情的理想之地。`
+      intro: `**蟹步道（Crab Catwalk / Passarela do Caranguejo）** 位于巴西塞尔希培州首府阿拉卡茹的阿塔莱亚区。它并非孤立存在的景点，而是全长约 6 公里、被誉为“巴西最美海滨大道”的**阿塔莱亚海滨大道（Orla de Atalaia）**的精华南段。\n\n**景点特色**：蟹步道是一条著名的海滨木板步道，以其众多的蟹肉餐厅而闻名。这里不仅是品尝当地美味蟹料理的最佳去处，也是欣赏南美洲壮丽日落的热门地点。\n\n**文化意义**：当夜幕降临，蟹步道才展现出它最具活力的一面。海风中不仅弥漫着美食的香气，还常伴随着巴西东北部特有的 **Forró（福罗）手风琴现场音乐**。许多餐厅在周末会化身为露天的文化秀场，让游客在海浪声中感受热烈欢快的拉美节奏。`
     },
     curiosities: {
       title: "隐藏的故事：蟹步道的趣味知识",
-      content: `**美食天堂**：蟹步道以其众多的蟹肉餐厅而闻名，这里的蟹肉料理是塞尔希培州的代表性美食。游客可以品尝到各种烹饪方式的蟹肉，包括传统的巴西风味。\n\n**日落观赏地**：蟹步道是阿拉卡茹观赏日落的最佳地点之一。傍晚时分，夕阳西下，海面波光粼粼，景色十分壮观。\n\n**旅游发展**：随着阿拉卡茹旅游业的发展，蟹步道逐渐成为该市最重要的旅游名片之一，吸引了越来越多的国内外游客。`
+      content: `**美食天堂**：在蟹步道品尝螃蟹不仅仅是进餐，更是一种沉浸式的文化体验。当地最正宗的吃法是点一份传统的“炖蟹”（Caranguejada），餐厅通常会为每位食客配备标志性的**小木槌和木砧板**。伴随着此起彼伏敲击蟹壳的清脆声响，佐以冰镇的巴西国民鸡尾酒（Caipirinha），这才是最地道的阿拉卡茹之夜。\n\n**日落观赏地**：蟹步道是阿拉卡茹观赏日落的最佳地点之一。傍晚时分，夕阳西下，海面波光粼粼，景色十分壮观。\n\n**旅游发展**：随着阿拉卡茹旅游业的发展，蟹步道逐渐成为该市最重要的旅游名片之一，吸引了越来越多的国内外游客。`
     },
     architecture: {
       title: "步道特色与结构设计",
@@ -97,6 +97,7 @@ export const translations: Record<Locale, Translations> = {
       tips: { title: "交通与气候小贴士", items: [
         "🌡️ **气候优势**：阿拉卡茹位于热带地区，全年温暖，是巴西气候最舒适的城市之一",
         "市区内建议使用打车软件（Uber/99）更安全便捷",
+        "🚗 **自驾与停车**：海滨大道及蟹步道沿线设有较多公共停车位，但在旺季（如 12 月至 2 月）或周末的傍晚，车位会变得相对紧张，建议提前抵达或优先使用网约车出行。",
         "傍晚时分前往可以欣赏到美丽的日落",
         "可以与阿塔莱亚海滩、阿拉卡茹市中心等景点安排在同一行程",
         "阿拉卡茹的交通相对不太拥堵，出行较为方便"
@@ -137,11 +138,11 @@ export const translations: Record<Locale, Translations> = {
     rating: { reviews: "reviews", source: "Google Reviews" },
     history: {
       title: "History & Development",
-      intro: `The Crab Catwalk (Passarela do Caranguejo) is located in the Atalaia district of Aracaju, the capital of Sergipe state in Brazil. It is one of the city's most famous seaside tourist attractions.\n\n**Attraction Features**: The Crab Catwalk is a famous wooden seaside promenade, known for its numerous crab restaurants. It is not only the best place to taste local delicious crab dishes, but also a popular spot for watching spectacular sunsets in South America.\n\n**Cultural Significance**: As an important tourist and cultural landmark in Aracaju, the Crab Catwalk attracts many tourists to taste food, enjoy sea views and experience the local tropical seaside culture. The walkway is lined with numerous restaurants, bars and tourist facilities, making it an ideal place to experience the coastal style of northeastern Brazil.`
+      intro: `**Crab Catwalk (Passarela do Caranguejo)** is located in the Atalaia district of Aracaju, the capital of Sergipe state in Brazil. It is not an isolated attraction, but rather the essence of the southern section of the **Orla de Atalaia** (Atalaia Seaside Avenue), a 6-kilometer stretch renowned as "Brazil's most beautiful seaside avenue".\n\n**Attraction Features**: The Crab Catwalk is a famous wooden seaside promenade, known for its numerous crab restaurants. It is not only the best place to taste local delicious crab dishes, but also a popular spot for watching spectacular sunsets in South America.\n\n**Cultural Significance**: When night falls, the Crab Catwalk reveals its most vibrant side. The sea breeze is not only filled with the aroma of food, but also often accompanied by live **Forró accordion music**, unique to northeastern Brazil. Many restaurants transform into open-air cultural stages on weekends, allowing visitors to feel the passionate and cheerful Latin American rhythms amidst the sound of ocean waves.`
     },
     curiosities: {
       title: "Hidden Stories: Fun Facts About Crab Catwalk",
-      content: `**Food Paradise**: The Crab Catwalk is famous for its numerous crab restaurants. The crab dishes here are representative cuisine of Sergipe state. Visitors can taste crab prepared in various cooking styles, including traditional Brazilian flavors.\n\n**Sunset Viewing Spot**: The Crab Catwalk is one of the best places to watch sunset in Aracaju. In the evening, the sun sets in the west, and the sea sparkles, creating a spectacular view.\n\n**Tourism Development**: With the development of tourism in Aracaju, the Crab Catwalk has gradually become one of the city's most important tourist attractions, attracting more and more domestic and foreign tourists.`
+      content: `**Food Paradise**: Tasting crab at the Crab Catwalk is not just dining, but an immersive cultural experience. The most authentic local way is to order a traditional "Caranguejada" (crab stew). Restaurants usually provide each diner with an iconic **small wooden mallet and cutting board**. Accompanied by the crisp sound of cracking crab shells and a chilled Brazilian national cocktail (Caipirinha), this is the most authentic Aracaju night.\n\n**Sunset Viewing Spot**: The Crab Catwalk is one of the best places to watch sunset in Aracaju. In the evening, the sun sets in the west, and the sea sparkles, creating a spectacular view.\n\n**Tourism Development**: With the development of tourism in Aracaju, the Crab Catwalk has gradually become one of the city's most important tourist attractions, attracting more and more domestic and foreign tourists.`
     },
     architecture: {
       title: "Walkway Features & Structure Design",
@@ -204,6 +205,7 @@ export const translations: Record<Locale, Translations> = {
       tips: { title: "Transportation & Climate Tips", items: [
         "🌡️ **Climate Advantage**: Aracaju is located in the tropical region, warm all year round, one of the most comfortable cities in Brazil in terms of climate",
         "Using ride-hailing apps (Uber/99) in the city is safer and more convenient",
+        "🚗 **Driving & Parking**: There are many public parking spaces along the seaside avenue and Crab Catwalk, but during peak season (December to February) or weekend evenings, parking can be relatively tight. It's recommended to arrive early or prioritize ride-hailing services.",
         "Go in the evening to enjoy the beautiful sunset",
         "Combine with Atalaia Beach, downtown Aracaju and other attractions in the same trip",
         "Aracaju's traffic is relatively less congested, making travel more convenient"
@@ -244,11 +246,11 @@ export const translations: Record<Locale, Translations> = {
     rating: { reviews: "avaliações", source: "Google Avaliações" },
     history: {
       title: "História e Desenvolvimento",
-      intro: `A Passarela do Caranguejo está localizada no bairro de Atalaia, em Aracaju, capital do estado de Sergipe, no Brasil. É um dos atrativos turísticos costeiros mais famosos da cidade.\n\n**Características do Atrativo**: A Passarela do Caranguejo é um famoso passeio marítimo de madeira, conhecido por seus numerosos restaurantes de caranguejo. É não apenas o melhor lugar para provar os deliciosos pratos de caranguejo locais, mas também um local popular para assistir aos espetaculares pores do sol na América do Sul.\n\n**Significado Cultural**: Como um importante marco turístico e cultural em Aracaju, a Passarela do Caranguejo atrai muitos turistas para provar comida, desfrutar das vistas para o mar e experimentar a cultura costeira tropical local. O passeio está repleto de numerosos restaurantes, bares e instalações turísticas, tornando-se um lugar ideal para experimentar o estilo de vida costeiro do nordeste do Brasil.`
+      intro: `A **Passarela do Caranguejo (Crab Catwalk)** está localizada no bairro de Atalaia, em Aracaju, capital do estado de Sergipe, no Brasil. Não é uma atração isolada, mas sim a essência da seção sul da **Orla de Atalaia**, uma extensão de 6 quilômetros conhecida como a "avenida costeira mais bonita do Brasil".\n\n**Características do Atrativo**: A Passarela do Caranguejo é um famoso passeio marítimo de madeira, conhecido por seus numerosos restaurantes de caranguejo. É não apenas o melhor lugar para provar os deliciosos pratos de caranguejo locais, mas também um local popular para assistir aos espetaculares pores do sol na América do Sul.\n\n**Significado Cultural**: Quando a noite cai, a Passarela do Caranguejo revela seu lado mais vibrante. A brisa do mar não é apenas preenchida com o aroma da comida, mas também frequentemente acompanhada por **música ao vivo de sanfona (Forró)**, típica do nordeste brasileiro. Muitos restaurantes se transformam em palcos culturais ao ar livre nos fins de semana, permitindo que os visitantes sintam os ritmos latino-americanos apaixonantes e alegres em meio ao som das ondas do mar.`
     },
     curiosities: {
       title: "Histórias Ocultas: Curiosidades sobre a Passarela",
-      content: `**Paraíso Gastronômico**: A Passarela do Caranguejo é famosa por seus numerosos restaurantes de caranguejo. Os pratos de caranguejo aqui são a culinária representativa do estado de Sergipe. Os visitantes podem provar caranguejo preparado de diversas formas culinárias, incluindo sabores tradicionais brasileiros.\n\n**Lugar para Ver Pores do Sol**: A Passarela do Caranguejo é um dos melhores lugares para ver o pôr do sol em Aracaju. À tarde, o sol se põe no oeste e o mar brilha, criando uma vista espetacular.\n\n**Desenvolvimento Turístico**: Com o desenvolvimento do turismo em Aracaju, a Passarela do Caranguejo tornou-se gradualmente um dos atrativos turísticos mais importantes da cidade, atraindo cada vez mais turistas nacionais e estrangeiros.`
+      content: `**Paraíso Gastronômico**: Degustar caranguejo na Passarela do Caranguejo não é apenas uma refeição, mas uma experiência cultural imersiva. A maneira local mais autêntica é pedir uma tradicional "Caranguejada". Os restaurantes geralmente fornecem a cada cliente um icônico **martelinho e tábua de madeira**. Acompanhado pelo som crocante de quebrar cascas de caranguejo e uma Caipirinha gelada, esta é a noite mais autêntica de Aracaju.\n\n**Lugar para Ver Pores do Sol**: A Passarela do Caranguejo é um dos melhores lugares para ver o pôr do sol em Aracaju. À tarde, o sol se põe no oeste e o mar brilha, criando uma vista espetacular.\n\n**Desenvolvimento Turístico**: Com o desenvolvimento do turismo em Aracaju, a Passarela do Caranguejo tornou-se gradualmente um dos atrativos turísticos mais importantes da cidade, atraindo cada vez mais turistas nacionais e estrangeiros.`
     },
     architecture: {
       title: "Características do Passeio e Design Estrutural",
@@ -311,6 +313,7 @@ export const translations: Record<Locale, Translations> = {
       tips: { title: "Dicas de Transporte e Clima", items: [
         "🌡️ **Vantagem Climática**: Aracaju está localizada na região tropical, quente o ano todo, uma das cidades mais confortáveis do Brasil em termos climáticos",
         "Usar aplicativos de transporte (Uber/99) na cidade é mais seguro e conveniente",
+        "🚗 **Dirigir e Estacionar**: Existem muitas vagas de estacionamento público ao longo da avenida costeira e da Passarela do Caranguejo, mas durante a alta temporada (dezembro a fevereiro) ou nas noites de fim de semana, o estacionamento pode ser relativamente difícil. Recomenda-se chegar cedo ou priorizar serviços de transporte por aplicativo.",
         "Vá à tarde para desfrutar do belo pôr do sol",
         "Combine com Praia de Atalaia, centro de Aracaju e outras atrações na mesma viagem",
         "O tráfego em Aracaju é relativamente menos congestionado, tornando a viagem mais conveniente"
