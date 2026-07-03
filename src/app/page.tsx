@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { getTranslationsForLocale } from "@/i18n/translations";
 
 export const metadata: Metadata = {
   title: "Crab Catwalk | Passarela do Caranguejo",

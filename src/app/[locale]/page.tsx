@@ -308,7 +308,7 @@ function Monuments() {
 }
 
 function BestTimeToVisit() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
   return (
     <section className="section" style={{ background: "var(--color-cream)" }}>
       <ScrollReveal>
