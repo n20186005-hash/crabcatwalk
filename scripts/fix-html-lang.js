@@ -6,8 +6,9 @@ const outDir = path.resolve(__dirname, '..', 'out');
 // Map of locale to HTML lang attribute value
 const langMap = {
   'en': 'en',
-  'es': 'es',
+  'pt': 'pt-BR',
   'zh': 'zh-CN',
+  'es': 'es',
   'qu': 'qu',
 };
 

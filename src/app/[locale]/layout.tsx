@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "../globals.css";
+import { SITE, SITE_BASE_URL } from "@/i18n/site";
+import { generateSchema } from "../schema";
+import HtmlLangSetter from "@/components/HtmlLangSetter";
 
 const cormorant = Cormorant_Garamond({
   weight: ["400", "600", "700"],
@@ -17,7 +20,7 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "crab-catwalk.com"}`;
+const baseUrl = SITE_BASE_URL;
 
 // 语言配置：HTML lang 属性 + OG locale 映射
 const localeConfig: Record<string, { htmlLang: string; ogLocale: string }> = {
@@ -26,13 +29,58 @@ const localeConfig: Record<string, { htmlLang: string; ogLocale: string }> = {
   zh: { htmlLang: "zh-CN", ogLocale: "zh_CN" },
 };
 
+// TDK：标题必须同时出现「当地官方葡语名 + 英文名」，并带上高意图词（餐厅 / 攻略）。
+// 搜索数据显示纯英文名或纯葡语名都会造成语言割裂，双语并列可同时承接两边的查询。
+const TITLES: Record<string, string> = {
+  pt: `${SITE.shortName} (${SITE.fullName}) ${SITE.city}: Guia & Restaurantes`,
+  en: `${SITE.fullName} (${SITE.shortName}) ${SITE.city}: Restaurants & Guide`,
+  zh: `${SITE.nameZh}（${SITE.shortName}）${SITE.cityZh}：餐厅、攻略与游玩指南`,
+};
+
+const OG_TITLES: Record<string, string> = {
+  pt: `${SITE.shortName} (${SITE.fullName}) - ${SITE.city}`,
+  en: `${SITE.fullName} (${SITE.shortName}) - ${SITE.city} Guide`,
+  zh: `${SITE.nameZh}（${SITE.shortName}）- ${SITE.cityZh}游玩指南`,
+};
+
+const SITE_NAMES: Record<string, string> = {
+  pt: `Guia da ${SITE.shortName}`,
+  en: `${SITE.fullName} Guide`,
+  zh: `${SITE.nameZh}指南`,
+};
+
+// 描述里必须出现「具体地址 + 螃蟹美食 + 怎么去」，这三项是游客点击前最想确认的信息
+const DESCRIPTIONS: Record<string, string> = {
+  pt: `Visite a ${SITE.shortName} (${SITE.fullName}) na ${SITE.streetAddress}, ${SITE.city} - ${SITE.stateCode}. Veja os melhores restaurantes de caranguejo, o caranguejo gigante, o pôr do sol e como chegar.`,
+  en: `Visit ${SITE.fullName} (${SITE.shortName}) at ${SITE.streetAddress}, ${SITE.city} - ${SITE.stateCode}. Find the best crab restaurants, the giant crab statue, sunset spots and how to get there.`,
+  zh: `${SITE.nameZh}（${SITE.shortName} / ${SITE.fullName}）位于${SITE.countryNameZh}${SITE.cityZh} ${SITE.streetAddress}。查看最佳蟹肉餐厅、巨型螃蟹雕像、日落观景点与交通指南。`,
+};
+
+const OG_DESCRIPTIONS: Record<string, string> = {
+  pt: `Guia da ${SITE.shortName} (${SITE.fullName}) em ${SITE.city}: restaurantes de caranguejo, mapa, horários e como chegar.`,
+  en: `Guide to ${SITE.fullName} (${SITE.shortName}) in ${SITE.city}: crab restaurants, map, opening hours and how to get there.`,
+  zh: `${SITE.cityZh}（${SITE.city}）${SITE.nameZh}游览指南：蟹肉餐厅、地图位置、开放时间与交通方式。`,
+};
+
+const IMAGE_ALTS: Record<string, string> = {
+  pt: `${SITE.shortName} em ${SITE.city}, ${SITE.countryNamePt}`,
+  en: `${SITE.fullName} in ${SITE.city}, ${SITE.country}`,
+  zh: `${SITE.cityZh}（${SITE.city}）的${SITE.nameZh}`,
+};
+
+function pick(map: Record<string, string>, locale: string) {
+  return map[locale] || map.en;
+}
+
 // 生成绝对 URL 的 hreflang 映射
+// x-default 指向语言入口页（/），它是「不针对任何特定语言」的页面，
+// 与 sitemap 及根路径页自身的 alternates 保持完全一致。
 function getHreflangAlternates(baseUrl: string) {
   return {
     pt: `${baseUrl}/pt`,
     en: `${baseUrl}/en`,
     zh: `${baseUrl}/zh`,
-    "x-default": `${baseUrl}/pt`,  // 默认回退页面设为葡萄牙文版
+    "x-default": `${baseUrl}/`,
   };
 }
 
@@ -43,42 +91,52 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const hreflangs = getHreflangAlternates(baseUrl);
+  const title = pick(TITLES, locale);
+  const ogTitle = pick(OG_TITLES, locale);
+  const description = pick(DESCRIPTIONS, locale);
+  const ogDescription = pick(OG_DESCRIPTIONS, locale);
+  const siteName = pick(SITE_NAMES, locale);
+  const imageAlt = pick(IMAGE_ALTS, locale);
+
   return {
     metadataBase: new URL(baseUrl),
     title: {
-      default:
-        locale === "pt"
-          ? "Passarela do Caranguejo — Aracaju, Brasil"
-          : locale === "zh"
-          ? "蟹步道 — 巴西阿拉卡茹"
-          : "Crab Catwalk — Aracaju, Brazil",
+      default: title,
       template:
         locale === "pt"
-          ? "%s | Passarela do Caranguejo"
+          ? `%s | ${SITE.shortName}`
           : locale === "zh"
-          ? "%s | 蟹步道"
-          : "%s | Crab Catwalk",
+          ? `%s | ${SITE.nameZh}`
+          : `%s | ${SITE.fullName}`,
     },
-    description:
-      locale === "pt"
-        ? "Guia da Passarela do Caranguejo em Aracaju, Brasil. Famosa passeio marítimo conhecida pelos restaurantes de caranguejo e vista do pôr do sol."
-        : locale === "zh"
-        ? "蟹步道指南——探索巴西阿拉卡茹的著名海滨步道，品尝美味蟹肉料理，欣赏壮丽日落景色。"
-        : "A guide to Crab Catwalk in Aracaju, Brazil. Famous seaside promenade known for crab restaurants and sunset views.",
+    description,
+    applicationName: siteName,
+    // 关键词覆盖三类真实查询意图：本地葡语、英文国际、中文
     keywords: [
-      "Crab Catwalk",
-      "Passarela do Caranguejo",
-      "Aracaju tourism",
+      SITE.fullName,
+      SITE.shortName,
+      SITE.nameZh,
+      `${SITE.fullName} ${SITE.city}`,
+      `${SITE.shortName} ${SITE.city}`,
+      `${SITE.shortName} restaurantes`,
+      `restaurantes em ${SITE.city}`,
+      `o que fazer em ${SITE.city}`,
+      `pontos turisticos ${SITE.city}`,
+      `caranguejo gigante ${SITE.city}`,
+      `${SITE.city} tourism`,
+      `${SITE.state} tourism`,
       "Brazil tourism",
       "Seaside promenade",
-      "Aracaju attractions",
+      `${SITE.city} attractions`,
       "蟹步道",
       "阿拉卡茹旅游",
+      "阿拉卡茹餐厅",
       "巴西旅游",
     ],
-    authors: [{ name: "Crab Catwalk Guide" }],
-    creator: "Crab Catwalk Guide",
-    publisher: "Crab Catwalk Guide",
+    authors: [{ name: `${SITE.fullName} Guide` }],
+    creator: `${SITE.fullName} Guide`,
+    publisher: `${SITE.fullName} Guide`,
+    category: "travel",
     formatDetection: {
       email: false,
       address: false,
@@ -86,60 +144,28 @@ export async function generateMetadata({
     },
     openGraph: {
       type: "website",
-      locale: localeConfig[locale]?.ogLocale || "pt_BR",
+      locale: localeConfig[locale]?.ogLocale || "en_US",
       alternateLocale: Object.values(localeConfig)
         .map((c) => c.ogLocale)
-        .filter(
-          (l) => l !== (localeConfig[locale]?.ogLocale || "pt_BR")
-        ),
+        .filter((l) => l !== (localeConfig[locale]?.ogLocale || "en_US")),
       url: `${baseUrl}/${locale}`,
-      title:
-        locale === "pt"
-          ? "Passarela do Caranguejo — Aracaju, Brasil"
-          : locale === "zh"
-          ? "蟹步道 — 巴西阿拉卡茹"
-          : "Crab Catwalk — Aracaju, Brazil",
-      description:
-        locale === "pt"
-          ? "Guia da Passarela do Caranguejo em Aracaju, Brasil. Famosa passeio marítimo."
-          : locale === "zh"
-          ? "蟹步道指南——探索巴西阿拉卡茹的著名海滨步道。"
-          : "A guide to Crab Catwalk in Aracaju, Brazil.",
-      siteName:
-        locale === "pt"
-          ? "Guia da Passarela do Caranguejo"
-          : locale === "zh"
-          ? "蟹步道指南"
-          : "Crab Catwalk Guide",
+      title: ogTitle,
+      description: ogDescription,
+      siteName,
       images: [
         {
-          url: "/gallery/crab-catwalk (11).jpg",
+          url: SITE.heroImage,
           width: 1200,
           height: 630,
-          alt:
-            locale === "pt"
-              ? "Passarela do Caranguejo - Aracaju, Brasil"
-              : locale === "zh"
-              ? "蟹步道 - 阿拉卡茹"
-              : "Crab Catwalk - Aracaju, Brazil",
+          alt: imageAlt,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title:
-        locale === "pt"
-          ? "Passarela do Caranguejo — Aracaju, Brasil"
-          : locale === "zh"
-          ? "蟹步道 — 巴西阿拉卡茹"
-          : "Crab Catwalk — Aracaju, Brazil",
-      description:
-        locale === "pt"
-          ? "Guia da Passarela do Caranguejo em Aracaju, Brasil."
-          : locale === "zh"
-          ? "蟹步道指南——探索巴西阿拉卡茹。"
-          : "A guide to Crab Catwalk in Aracaju, Brazil.",
-      images: ["/gallery/crab-catwalk (11).jpg"],
+      title: ogTitle,
+      description: ogDescription,
+      images: [SITE.heroImage],
     },
     robots: {
       index: true,
@@ -172,9 +198,6 @@ export function generateStaticParams() {
   ];
 }
 
-import { generateSchema } from "../schema";
-import HtmlLangSetter from "@/components/HtmlLangSetter";
-
 function SchemaScript({ locale }: { locale: string }) {
   const schema = generateSchema(locale);
   return (
@@ -193,7 +216,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  const htmlLang = localeConfig[locale]?.htmlLang || "pt-BR";
+  const htmlLang = localeConfig[locale]?.htmlLang || "en";
 
   return (
     <>

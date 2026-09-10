@@ -1,19 +1,24 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { LangProvider, useLang } from "@/components/LangProvider";
 import { useTheme } from "next-themes";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { WeatherWidget } from "@/components/WeatherWidget";
 import { StructuredData } from "@/components/StructuredData";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { SmartImage } from "@/components/SmartImage";
+import { WeatherSection } from "@/components/WeatherSection";
+import { TideSection } from "@/components/TideSection";
 import galleryImagesData from "@/gallery-data.json";
+import { SITE } from "@/i18n/site";
+import { renderText } from "@/lib/text";
 
 // Temporary: using minimal translations for build
 // import { translations } from "@/i18n/translations";
 // TODO: Restore full translations after completing all language updates
 
-const MAPS_URL = "https://maps.app.goo.gl/XYFWG3cjXBbhB9QT8";
+const MAPS_URL = SITE.mapsShareUrl;
 
 const GOOGLE_REVIEWS = [
   { name: "Carlos M.", avatar: "CM", rating: 5, date: "2025-03-10", text: "A Passarela do Caranguejo é incrível! Os restaurantes servem os melhores pratos de caranguejo de Aracaju. A vista do pôr do sol é espetacular." },
@@ -23,21 +28,6 @@ const GOOGLE_REVIEWS = [
   { name: "João P.", avatar: "JP", rating: 4, date: "2024-11-25", text: "Ótimo lugar para passear e comer frutos do mar. A Passarela do Caranguejo é um ícone de Aracaju. Recomendo visitar no final da tarde." },
   { name: "Emma W.", avatar: "EW", rating: 5, date: "2024-10-15", text: "Beautiful boardwalk with amazing ocean views. The crab restaurants are fantastic and the atmosphere is very tropical and relaxing." }
 ];
-
-function ScrollReveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.unobserve(el); } },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return <div ref={ref} className={`reveal ${className}`}>{children}</div>;
-}
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -97,15 +87,26 @@ function Nav() {
   return (
     <nav className={`site-nav ${scrolled ? "scrolled" : ""}`}>
       <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-        <span style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", fontWeight: 700, color: "#fff" }}>
-          Crab Catwalk
-        </span>
+        {/* 页眉清晰展示景点官方全称 + 当地俗称（NAP 一致性） */}
+        <a href="#about" className="nav-brand" style={{ textDecoration: "none" }}>
+          <span style={{ fontFamily: "var(--font-display)", fontSize: "1.2rem", fontWeight: 700, color: "#fff", lineHeight: 1.15 }}>
+            {SITE.fullName}
+          </span>
+          <span className="nav-brand-sub">
+            {SITE.shortName} · {SITE.city}
+          </span>
+        </a>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
         <div className="nav-links">
           <a href="#history">{t.nav.history}</a>
+          <a href="#nature">{t.nav.nature}</a>
+          <a href="#culture">{t.nav.culture}</a>
           <a href="#architecture">{t.nav.architecture}</a>
           <a href="#monuments">{t.nav.monuments}</a>
+          <a href="#weather">{t.nav.weather}</a>
+          <a href="#tide">{t.nav.tide}</a>
+          <a href="#facilities">{t.nav.facilities}</a>
           <a href="#visiting">{t.nav.visiting}</a>
           <a href="#transportation">{t.nav.transportation}</a>
           <a href="#gallery">{t.nav.gallery}</a>
@@ -124,12 +125,19 @@ function Hero() {
   const { t, locale } = useLang();
   return (
     <section className="hero">
-      <div className="hero-bg" style={{ backgroundImage: "url('/gallery/crab-catwalk (11).jpg')" }} />
+      {/* 首屏主视觉：使用压缩后的 WebP，并保留 JPEG 兜底 */}
+      <div className="hero-bg" />
       <div className="hero-texture" />
       <div className="hero-overlay" />
       <div className="hero-content">
         <p className="hero-tagline">{t.hero.tagline}</p>
-        <h1 className="hero-title">{t.hero.title}</h1>
+        {/* H1：全页唯一。同时写出葡语官方名与英文名，
+            让「Passarela do Caranguejo」与「Crab Catwalk」在同一个标题里被绑定为同一实体 */}
+        <h1 className="hero-title">
+          {t.hero.title}{" "}
+          <span className="hero-title-alt">({t.hero.titleAlt})</span>
+          <span className="hero-title-city"> · {SITE.city}</span>
+        </h1>
         <p className="hero-subtitle">{t.hero.subtitle}</p>
         <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", justifyContent: "center", marginBottom: "1.5rem" }}>
           {t.hero.tags?.map((tag: string, i: number) => (
@@ -157,7 +165,7 @@ function Hero() {
           <div style={{ width: "1px", background: "rgba(255,255,255,0.2)" }} />
           <div style={{ textAlign: "center" }}>
             <div style={{ color: "var(--color-gold)", fontSize: "0.85rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px" }}>{locale === "zh" ? "评价数量" : locale === "pt" ? "Avaliações" : "Reviews"}</div>
-            <div style={{ color: "#fff", fontSize: "1.2rem", fontWeight: 700 }}>23,374</div>
+            <div style={{ color: "#fff", fontSize: "1.2rem", fontWeight: 700 }}>{Number(SITE.reviewCount).toLocaleString("en-US")}</div>
           </div>
         </div>
 
@@ -172,23 +180,91 @@ function Hero() {
         <div className="hero-meta">
           <div className="hero-rating">4.7</div>
           <div className="hero-stars">★ ★ ★ ★ ★</div>
-          <div className="hero-reviews">23,374 {t.rating.reviews} · {t.rating.source}</div>
+          <div className="hero-reviews">{Number(SITE.reviewCount).toLocaleString("en-US")} {t.rating.reviews} · {t.rating.source}</div>
         </div>
       </a>
     </section>
   );
 }
 
-function renderText(text: string) {
-  if (!text) return null;
-  // Replace **text** with <strong>text</strong>
-  const parts = text.split(/(\*\*.*?\*\*)/g);
-  return parts.map((part, index) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return <strong key={index}>{part.slice(2, -2)}</strong>;
-    }
-    return <React.Fragment key={index}>{part}</React.Fragment>;
-  });
+function About() {
+  const { t, locale } = useLang();
+
+  const hierarchy = [
+    { label: SITE.fullName, sub: SITE.shortName },
+    { label: SITE.city, sub: locale === "zh" ? "城市" : locale === "pt" ? "Cidade" : "City" },
+    { label: SITE.state, sub: locale === "zh" ? "州 / 省" : locale === "pt" ? "Estado" : "State" },
+    { label: SITE.country, sub: locale === "zh" ? "国家" : locale === "pt" ? "País" : "Country" },
+  ];
+
+  return (
+    <section id="about" className="section">
+      <ScrollReveal>
+        <p className="section-label">{SITE.fullName} · {SITE.city}</p>
+        <h2 className="section-title">{t.about.title}</h2>
+        <div className="section-divider" />
+      </ScrollReveal>
+      <ScrollReveal>
+        <p className="about-text" style={{ whiteSpace: "pre-line", marginBottom: "2rem" }}>
+          {renderText(t.about.intro)}
+        </p>
+      </ScrollReveal>
+      <ScrollReveal>
+        {/* 地理面包屑：实体 → 城市 → 州 → 国家 */}
+        <nav className="entity-breadcrumb" aria-label={t.about.breadcrumbTitle}>
+          <span className="entity-breadcrumb-label">{t.about.breadcrumbTitle}</span>
+          <ol className="entity-breadcrumb-list">
+            {hierarchy.map((item, i) => (
+              <li key={i} className="entity-breadcrumb-item">
+                <span className="entity-breadcrumb-name">{item.label}</span>
+                <span className="entity-breadcrumb-sub">{item.sub}</span>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </ScrollReveal>
+      <ScrollReveal>
+        <p className="about-text" style={{ whiteSpace: "pre-line", marginTop: "2rem" }}>
+          {renderText(t.about.nearbyCluster)}
+        </p>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+function SourcesSection() {
+  const { t } = useLang();
+
+  return (
+    <section id="sources" className="section" style={{ background: "rgba(0,0,0,0.02)" }}>
+      <ScrollReveal>
+        <p className="section-label">Sources</p>
+        <h2 className="section-title">{t.sources.title}</h2>
+        <p className="section-subtitle">{t.sources.subtitle}</p>
+        <div className="section-divider" />
+      </ScrollReveal>
+      <ScrollReveal>
+        <ul className="sources-list">
+          {t.sources.items.map((item: { name: string; url: string; note: string }, i: number) => (
+            <li key={i} className="source-item">
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="source-link"
+              >
+                {item.name}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </a>
+              <p className="source-note">{item.note}</p>
+            </li>
+          ))}
+        </ul>
+      </ScrollReveal>
+    </section>
+  );
 }
 
 function History() {
@@ -226,13 +302,127 @@ function History() {
   );
 }
 
+function Nature() {
+  const { t } = useLang();
+
+  return (
+    <section id="nature" className="section" style={{ background: "rgba(0,0,0,0.02)" }}>
+      <ScrollReveal>
+        <p className="section-label">02</p>
+        <h2 className="section-title">{t.nature.title}</h2>
+        <p className="section-subtitle">{t.nature.subtitle}</p>
+        <div className="section-divider" />
+      </ScrollReveal>
+      <ScrollReveal>
+        <p className="about-text" style={{ whiteSpace: "pre-line", marginBottom: "3rem" }}>
+          {renderText(t.nature.intro)}
+        </p>
+      </ScrollReveal>
+      <ScrollReveal>
+        <div className="content-grid">
+          {t.nature.items.map((item, i) => (
+            <article className="content-card" key={i}>
+              <h3 className="content-card-title">{item.title}</h3>
+              <p className="content-card-text">{renderText(item.content)}</p>
+            </article>
+          ))}
+        </div>
+      </ScrollReveal>
+      <ScrollReveal>
+        <div className="highlight-box">
+          <h3 className="highlight-title">{t.nature.conservation.title}</h3>
+          <p className="highlight-text" style={{ whiteSpace: "pre-line" }}>
+            {renderText(t.nature.conservation.content)}
+          </p>
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+function Culture() {
+  const { t } = useLang();
+
+  return (
+    <section id="culture" className="section">
+      <ScrollReveal>
+        <p className="section-label">03</p>
+        <h2 className="section-title">{t.culture.title}</h2>
+        <p className="section-subtitle">{t.culture.subtitle}</p>
+        <div className="section-divider" />
+      </ScrollReveal>
+      <ScrollReveal>
+        <p className="about-text" style={{ whiteSpace: "pre-line", marginBottom: "3rem" }}>
+          {renderText(t.culture.intro)}
+        </p>
+      </ScrollReveal>
+      <ScrollReveal>
+        <div className="content-grid">
+          {t.culture.items.map((item, i) => (
+            <article className="content-card" key={i}>
+              <h3 className="content-card-title">{item.title}</h3>
+              <p className="content-card-text">{renderText(item.content)}</p>
+            </article>
+          ))}
+        </div>
+      </ScrollReveal>
+      <ScrollReveal>
+        <div className="highlight-box">
+          <h3 className="highlight-title">{t.culture.legend.title}</h3>
+          <p className="highlight-text" style={{ whiteSpace: "pre-line" }}>
+            {renderText(t.culture.legend.content)}
+          </p>
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+function Facilities() {
+  const { t } = useLang();
+
+  return (
+    <section id="facilities" className="section" style={{ background: "rgba(0,0,0,0.02)" }}>
+      <ScrollReveal>
+        <p className="section-label">09</p>
+        <h2 className="section-title">{t.facilities.title}</h2>
+        <p className="section-subtitle">{t.facilities.subtitle}</p>
+        <div className="section-divider" />
+      </ScrollReveal>
+      <ScrollReveal>
+        <p className="about-text" style={{ marginBottom: "2.5rem" }}>
+          {renderText(t.facilities.intro)}
+        </p>
+      </ScrollReveal>
+      <ScrollReveal>
+        <div className="facility-grid">
+          {t.facilities.items.map((item, i) => (
+            <div className="facility-card" key={i}>
+              <span className="facility-icon" aria-hidden="true">
+                {item.icon}
+              </span>
+              <div>
+                <h3 className="facility-name">{item.name}</h3>
+                <p className="facility-detail">{item.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ScrollReveal>
+      <ScrollReveal>
+        <p className="facility-note">{renderText(t.facilities.note)}</p>
+      </ScrollReveal>
+    </section>
+  );
+}
+
 function Architecture() {
   const { t } = useLang();
   
   return (
-    <section id="architecture" className="section" style={{ background: "rgba(0,0,0,0.02)" }}>
+    <section id="architecture" className="section">
       <ScrollReveal>
-        <p className="section-label">02</p>
+        <p className="section-label">04</p>
         <h2 className="section-title">{t.architecture.title}</h2>
         <div className="section-divider" />
       </ScrollReveal>
@@ -279,7 +469,7 @@ function Monuments() {
   return (
     <section id="monuments" className="section">
       <ScrollReveal>
-        <p className="section-label">03</p>
+        <p className="section-label">05</p>
         <h2 className="section-title">{t.monuments.title}</h2>
         <div className="section-divider" />
       </ScrollReveal>
@@ -310,9 +500,10 @@ function Monuments() {
 function BestTimeToVisit() {
   const { t, locale } = useLang();
   return (
-    <section className="section" style={{ background: "var(--color-cream)" }}>
+    // 补上锚点 id，供页脚「最佳游览时间」内链跳转
+    <section id="best-time" className="section" style={{ background: "var(--color-cream)" }}>
       <ScrollReveal>
-        <p className="section-label">04</p>
+        <p className="section-label">06</p>
         <h2 className="section-title">{t.bestTime?.title || "最佳游览时间"}</h2>
         <div className="section-divider" />
       </ScrollReveal>
@@ -348,13 +539,23 @@ function BestTimeToVisit() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", marginTop: "3rem" }}>
           <div>
             <div style={{ borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.1)", marginBottom: "1rem" }}>
-              <img src="/gallery/crab-catwalk (5).jpg" alt="Daytime view" style={{ width: "100%", height: "auto", display: "block" }} />
+              <SmartImage
+                src="/gallery/crab-catwalk-05.jpg"
+                alt={`${SITE.fullName} (${SITE.shortName}) — daytime seaside view in ${SITE.city}, ${SITE.country}`}
+                sizes="(max-width: 768px) 100vw, 45vw"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
             </div>
             <p style={{ textAlign: "center", fontSize: "0.95rem", color: "var(--color-earth-soft)", fontWeight: 600 }}>{locale === "zh" ? "白天的海滨风光" : locale === "pt" ? "Vista costeira durante o dia" : "Daytime seaside view"}</p>
           </div>
           <div>
             <div style={{ borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(0,0,0,0.1)", marginBottom: "1rem" }}>
-              <img src="/gallery/crab-catwalk (8).jpg" alt="Sunset view" style={{ width: "100%", height: "auto", display: "block" }} />
+              <SmartImage
+                src="/gallery/crab-catwalk-08.jpg"
+                alt={`Golden-hour light over ${SITE.shortName} (${SITE.fullName}), ${SITE.city}`}
+                sizes="(max-width: 768px) 100vw, 45vw"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
             </div>
             <p style={{ textAlign: "center", fontSize: "0.95rem", color: "var(--color-earth-soft)", fontWeight: 600 }}>{locale === "zh" ? "壮丽的日落景色" : locale === "pt" ? "Vista espetacular do pôr do sol" : "Spectacular sunset view"}</p>
           </div>
@@ -376,7 +577,7 @@ function Visiting() {
     <section id="visiting" style={{ background: "linear-gradient(180deg, var(--color-cream) 0%, #eee8dd 100%)" }}>
       <div className="section">
         <ScrollReveal>
-          <p className="section-label">05</p>
+          <p className="section-label">10</p>
           <h2 className="section-title">{t.visiting.title}</h2>
           <div className="section-divider" />
         </ScrollReveal>
@@ -407,9 +608,6 @@ function Visiting() {
               ))}
             </ul>
           </div>
-        </ScrollReveal>
-        <ScrollReveal>
-          <WeatherWidget />
         </ScrollReveal>
       </div>
     </section>
@@ -445,7 +643,7 @@ function Transportation() {
   return (
     <section id="transportation" className="section">
       <ScrollReveal>
-        <p className="section-label">06</p>
+        <p className="section-label">11</p>
         <h2 className="section-title">{t.transportation.title}</h2>
         <div className="section-divider" />
       </ScrollReveal>
@@ -528,8 +726,8 @@ function Transportation() {
 function Gallery() {
   const { t, locale } = useLang();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const galleryImages = galleryImagesData.map((src: string) => ({
-    src,
+  const galleryImages = galleryImagesData.map((item) => ({
+    src: item.src,
     caption: {} as Record<string, string>,
     story: {} as Record<string, string>,
   }));
@@ -553,7 +751,7 @@ function Gallery() {
   return (
     <section id="gallery" className="section">
       <ScrollReveal>
-        <p className="section-label">07</p>
+        <p className="section-label">12</p>
         <h2 className="section-title">{t.gallery.title}</h2>
         <div className="section-divider" />
       </ScrollReveal>
@@ -561,10 +759,14 @@ function Gallery() {
         <div className="gallery-grid">
           {galleryImages.map((item, i) => (
             <div className="gallery-item" key={i} onClick={() => setLightboxIndex(i)}>
-              <img src={item.src} alt={item.caption?.[locale] || `Gallery image ${i + 1}`} loading="lazy" />
-              {item.caption && (
+              <SmartImage
+                src={item.src}
+                alt={`${SITE.fullName} (${SITE.shortName}) photo ${i + 1} — ${SITE.city}, ${SITE.country}`}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              {item.caption?.[locale] && (
                 <div className="gallery-caption-overlay">
-                  <p className="gallery-caption-text">{item.caption[locale] || item.caption.en || ""}</p>
+                  <p className="gallery-caption-text">{item.caption[locale]}</p>
                 </div>
               )}
             </div>
@@ -585,7 +787,12 @@ function Gallery() {
         <div className="lightbox" onClick={() => setLightboxIndex(null)}>
           <button className="lightbox-close" onClick={() => setLightboxIndex(null)}>×</button>
           <button className="lightbox-prev" onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length); }}>‹</button>
-          <img src={galleryImages[lightboxIndex].src} alt={currentCaption || `Gallery image ${lightboxIndex + 1}`} className="lightbox-img" />
+          <SmartImage
+            src={galleryImages[lightboxIndex].src}
+            alt={currentCaption || `${SITE.fullName} (${SITE.shortName}) photo ${lightboxIndex + 1} — ${SITE.city}`}
+            sizes="90vw"
+            className="lightbox-img"
+          />
           <button className="lightbox-next" onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % galleryImages.length); }}>›</button>
           {(currentCaption || currentStory) && (
             <div className="lightbox-info">
@@ -611,7 +818,7 @@ function Reviews() {
   return (
     <section id="reviews" className="section" style={{ background: "linear-gradient(180deg, var(--color-cream) 0%, #e8e2d6 100%)" }}>
       <ScrollReveal>
-        <p className="section-label">08</p>
+        <p className="section-label">13</p>
         <h2 className="section-title">{t.reviews.title}</h2>
         <p className="section-subtitle">{t.reviews.subtitle}</p>
         <div className="section-divider" />
@@ -685,7 +892,7 @@ function FAQ() {
     <section id="faq" className="section">
       <div className="section">
         <ScrollReveal>
-        <p className="section-label">09</p>
+        <p className="section-label">14</p>
         <h2 className="section-title">{t.faq.title}</h2>
           <p className="section-subtitle">{t.faq.subtitle}</p>
           <div className="section-divider" />
@@ -711,13 +918,14 @@ function FAQ() {
                     <path d="M6 9l6 6 6-6" />
                   </svg>
                 </button>
-                {expandedIndex === i && (
-                  <div className="faq-answer">
-                    {item.answer.split("\n\n").map((paragraph: string, j: number) => (
-                      <p key={j}>{renderText(paragraph)}</p>
-                    ))}
-                  </div>
-                )}
+                {/* 答案始终输出到 HTML，只用 CSS 折叠。
+                    原先的「展开才渲染」会让答案完全缺失于源码：
+                    既拿不到精选摘要，也与 FAQPage 结构化数据声明的可见内容不一致 */}
+                <div className={`faq-answer${expandedIndex === i ? "" : " faq-answer-collapsed"}`}>
+                  {item.answer.split("\n\n").map((paragraph: string, j: number) => (
+                    <p key={j}>{renderText(paragraph)}</p>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -728,11 +936,11 @@ function FAQ() {
 }
 
 function Location() {
-  const { t } = useLang();
+  const { t, locale } = useLang();
   return (
     <section id="location" className="section">
       <ScrollReveal>
-        <p className="section-label">10</p>
+        <p className="section-label">15</p>
         <h2 className="section-title">{t.location.title}</h2>
         <div className="section-divider" />
       </ScrollReveal>
@@ -740,17 +948,19 @@ function Location() {
         <div className="location-section">
           <div className="location-map-container">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3829.366432372696!2d-37.0698!3d-10.9143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x70ead0a5a5a5a5a5%3A0xa5a5a5a5a5a5a5a5!2sPassarela%20do%20Caranguejo%2C%20Aracaju!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
-              width="800"
-              height="600"
+              src={SITE.mapsEmbedSrc}
+              width="100%"
+              height="450"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Crab Catwalk Location Map"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title={`${SITE.fullName} (${SITE.shortName}) location map — ${SITE.city}, ${SITE.country}`}
             />
           </div>
           <div className="location-info">
+            {/* NAP：名称 / 地址必须与 Google 地图资料完全一致 */}
+            <p className="location-nap-name">{SITE.fullName} · {SITE.shortName}</p>
             <p className="location-address">{t.location.address}</p>
             <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="maps-link">
               {t.location.openMaps}
@@ -758,6 +968,21 @@ function Location() {
                 <path d="M7 17L17 7M17 7H7M17 7V17" />
               </svg>
             </a>
+            <p className="location-official">
+              {locale === "zh"
+                ? "官方最新信息与区域旅游资讯，请访问 "
+                : locale === "pt"
+                ? "Para atualizações oficiais e informações turísticas da região, visite o "
+                : "For official updates and regional tourism information, visit the "}
+              <a href={SITE.govtTourismUrl} target="_blank" rel="noopener noreferrer">
+                {locale === "zh"
+                  ? `${SITE.countryNameZh}旅游部官方网站`
+                  : locale === "pt"
+                  ? `Portal Oficial de Turismo do ${SITE.countryNamePt} / ${SITE.state}`
+                  : `${SITE.country} / ${SITE.state} Official Tourism Portal`}
+              </a>
+              {locale === "zh" ? "。" : "."}
+            </p>
           </div>
         </div>
       </ScrollReveal>
@@ -769,6 +994,17 @@ function Footer() {
   const { t } = useLang();
   return (
     <footer className="site-footer">
+      {/* 站内锚文本内链：使用描述性锚文本，避免「点击这里」这类无意义文本 */}
+      <div className="footer-links">
+        <p className="footer-links-title">{t.footer.internalTitle}</p>
+        <div className="footer-links-grid">
+          {t.footer.internalLinks.map((link: { name: string; href: string }, i: number) => (
+            <a key={i} href={link.href} className="footer-link-item">
+              {link.name}
+            </a>
+          ))}
+        </div>
+      </div>
       <div className="footer-links">
         <p className="footer-links-title">{t.footer.linksTitle}</p>
         <div className="footer-links-grid">
@@ -790,6 +1026,12 @@ function Footer() {
           Cookie Settings
         </Link>
       </div>
+      {/* NAP 一致性：页脚清晰展示景点官方全称与完整地址 */}
+      <div className="footer-nap">
+        <p className="footer-nap-name">{SITE.fullName} · {SITE.shortName}</p>
+        <p className="footer-nap-address">{SITE.fullAddress}</p>
+      </div>
+      <p className="footer-copyright">{t.copyright}</p>
       <p className="footer-text" style={{ marginTop: "2rem", fontSize: "0.9rem", fontWeight: 600, color: "var(--color-gold)" }}>
         {t.footer.callToAction}
       </p>
@@ -805,16 +1047,23 @@ export default function Home(props: { params: Promise<{ locale: string }> }) {
       <StructuredData />
       <Nav />
       <Hero />
+      <About />
       <History />
+      <Nature />
+      <Culture />
       <Architecture />
       <Monuments />
       <BestTimeToVisit />
+      <WeatherSection />
+      <TideSection />
+      <Facilities />
       <Visiting />
       <Transportation />
       <Gallery />
       <Reviews />
       <FAQ />
       <Location />
+      <SourcesSection />
       <Footer />
     </LangProvider>
   );

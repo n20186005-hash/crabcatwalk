@@ -1,0 +1,29 @@
+{
+  "name": "Crab Catwalk (Passarela do Caranguejo) — Aracaju, Brazil",
+  "short_name": "Crab Catwalk",
+  "description": "Official visitor guide to Crab Catwalk (Passarela do Caranguejo) in Aracaju, Sergipe, Brazil. Location map, opening details, nearby attractions and travel tips.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf8f5",
+  "theme_color": "#1a2e1a",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["travel", "navigation", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
