@@ -41,3 +41,8 @@ next-env.d.ts
 
 # project specific
 pozos-azules.txt
+
+# cloudflare / wrangler（本地预览会生成 .wrangler/）
+/.wrangler/
+/.open-next/
+.dev.vars

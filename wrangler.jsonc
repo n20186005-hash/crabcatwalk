@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "crabcatwalk",
+  "compatibility_date": "2026-09-10",
+
+  // ────────────────────────────────────────────────────────────────
+  // 纯静态资源 Worker（无 main，不做服务端渲染）
+  //
+  // 本项目在 next.config.ts 中使用 output: "export"，站点是 100% 静态的：
+  // 12 条路由全部为 Static / SSG，产物落在 out/ 目录，
+  // 再由 scripts/fix-html-lang.js 就地修正各语言页面的 <html lang>。
+  //
+  // ⚠️ 不要删除本文件。
+  // 缺少它时，`wrangler deploy` 会依据 framework 自动识别为 Next.js SSR，
+  // 进而执行 `@opennextjs/cloudflare migrate` 并改用 OpenNext 构建；
+  // 而 OpenNext 要求 next.config 使用 output: "standalone"，
+  // 与静态导出互斥，构建会在 "Bundling cache assets" 阶段失败：
+  //   ENOENT: no such file or directory,
+  //   open '.next/standalone/.next/server/pages-manifest.json'
+  // ────────────────────────────────────────────────────────────────
+  "assets": {
+    // 指向 next build 的静态导出目录
+    "directory": "./out",
+
+    // 导出产物是 pt.html / en.html / zh.html 这种扁平文件名，
+    // auto-trailing-slash 会把 /pt 正确映射到 /pt.html，
+    // 并把 /pt.html 301 到 /pt，避免同一内容出现两个 URL。
+    "html_handling": "auto-trailing-slash",
+
+    // 使用 out/404.html 作为自定义 404 页面
+    "not_found_handling": "404-page"
+  }
+}
