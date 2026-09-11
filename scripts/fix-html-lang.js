@@ -27,15 +27,21 @@ function walkDir(dir, callback) {
 function fixHtmlLang(filePath) {
   let content = fs.readFileSync(filePath, 'utf-8');
   
-  // Determine locale from file path
+  // 域名根路径（out/index.html）默认语言为葡萄牙语：
+  // crabcatwalk.com 直接展示 pt 首页，不再有需要点击的语言入口页。
+  // 其余页面按路径中的语言目录 / xx.html 判定。
   let lang = 'en';
-  for (const [locale, htmlLang] of Object.entries(langMap)) {
-    // Check if the file path contains the locale directory
-    const localePattern = path.sep + locale + path.sep;
-    const localePatternAlt = path.sep + locale + '.html';
-    if (filePath.includes(localePattern) || filePath.endsWith(localePatternAlt)) {
-      lang = htmlLang;
-      break;
+  if (path.relative(outDir, filePath) === 'index.html') {
+    lang = langMap.pt;
+  } else {
+    for (const [locale, htmlLang] of Object.entries(langMap)) {
+      // Check if the file path contains the locale directory
+      const localePattern = path.sep + locale + path.sep;
+      const localePatternAlt = path.sep + locale + '.html';
+      if (filePath.includes(localePattern) || filePath.endsWith(localePatternAlt)) {
+        lang = htmlLang;
+        break;
+      }
     }
   }
   

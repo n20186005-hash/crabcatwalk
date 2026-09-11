@@ -1040,10 +1040,19 @@ function Footer() {
   );
 }
 
-export default function Home(props: { params: Promise<{ locale: string }> }) {
-  const params = React.use(props.params);
+type SiteLocale = "en" | "zh" | "pt";
+
+/**
+ * 语言页面主体
+ * ------------------------------------------------------------------
+ * 由两条路由共用：
+ *   - /[locale]（pt / en / zh）由 default export 的 Home 传入 URL 语言
+ *   - /（域名根路径）直接传入 "pt"，使 crabcatwalk.com 默认显示葡语，
+ *     不再出现需要用户点击的语言入口页，也不发生任何跳转。
+ */
+export function LocaleHome({ locale }: { locale: SiteLocale }) {
   return (
-    <LangProvider initialLocale={params.locale as "en" | "zh" | "pt"}>
+    <LangProvider initialLocale={locale}>
       <StructuredData />
       <Nav />
       <Hero />
@@ -1067,4 +1076,9 @@ export default function Home(props: { params: Promise<{ locale: string }> }) {
       <Footer />
     </LangProvider>
   );
+}
+
+export default function Home(props: { params: Promise<{ locale: string }> }) {
+  const params = React.use(props.params);
+  return <LocaleHome locale={params.locale as SiteLocale} />;
 }
