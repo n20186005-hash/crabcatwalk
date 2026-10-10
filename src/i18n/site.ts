@@ -7,8 +7,10 @@
  */
 export const SITE = {
   /* ── 域名 ── */
-  domain: "crabcatwalk.com",
-  baseUrl: "https://crabcatwalk.com",
+  // 规范域名统一为 www（SEO 报告 P0：GSC 数据显示 www 版本曝光占多数，
+  // 故将所有 canonical / hreflang / sitemap / JSON-LD 锚点统一到 www）。
+  domain: "www.crabcatwalk.com",
+  baseUrl: "https://www.crabcatwalk.com",
 
   /* ── 实体名称 ── */
   /** 景点官方全称 */
@@ -38,7 +40,7 @@ export const SITE = {
 
   /* ── 评分数据 ── */
   ratingValue: "4.7",
-  reviewCount: "23553",
+  reviewCount: "23619",
 
   /* ── 地图 ── */
   mapsShareUrl: "https://maps.app.goo.gl/XYFWG3cjXBbhB9QT8",

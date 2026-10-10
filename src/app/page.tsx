@@ -26,8 +26,8 @@ const HREFLANG = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: `${SITE.shortName} (${SITE.fullName}) ${SITE.city}: Guia & Restaurantes`,
-  description: `Visite a ${SITE.shortName} (${SITE.fullName}) na ${SITE.streetAddress}, ${SITE.city} - ${SITE.stateCode}. Veja os melhores restaurantes de caranguejo, o caranguejo gigante, o pôr do sol e como chegar.`,
+  title: `${SITE.shortName} em ${SITE.city}: Guia 2026`,
+  description: `Conheça a ${SITE.shortName}, na ${SITE.streetAddress}, ${SITE.city} - ${SITE.stateCode}: onde fica, como chegar, o caranguejo gigante, restaurantes e dicas para visitar.`,
   keywords: [
     SITE.fullName,
     SITE.shortName,

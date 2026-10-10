@@ -23,7 +23,7 @@ export type Translations = {
   visiting: { title: string; intro: string; hours: { title: string; content: string; note: string }; price: { title: string; content: string; note: string }; duration: { title: string; content: string; note: string }; tips: { title: string; items: string[] } };
   transportation: { title: string; airport: { title: string; content: string; options: TransportOption[] }; publicTransport?: { title: string; content: string; options: { name: string; description: string; steps: string[] }[] }; cycling?: { title: string; content: string }; localTransport?: { title: string; description?: string; content?: string; steps?: string[] }; city: { title: string; content: string; steps: string[] }; tips: { title: string; items: string[] } };
   gallery: { title: string; viewMore: string };
-  reviews: { title: string; subtitle: string; viewMore: string; nearbyTitle: string; nearbyIntro: string; nearbyItems: { name: string; description: string }[] };
+  reviews: { title: string; subtitle: string; viewMore: string; snapshotNote: string; themesTitle: string; themes: string[]; nearbyTitle: string; nearbyIntro: string; nearbyItems: { name: string; description: string }[] };
   faq: { title: string; subtitle: string; items: FAQItem[] };
   location: { title: string; address: string; openMaps: string };
   about: { title: string; intro: string; breadcrumbTitle: string; nearbyCluster: string };
@@ -97,23 +97,23 @@ export type Translations = {
 export const translations: Record<Locale, Translations> = {
   zh: {
     nav: { history: "历史沿革", nature: "自然生态", culture: "历史文化", architecture: "景点特色", monuments: "周边玩乐", weather: "天气出行", tide: "潮汐时刻", facilities: "实用设施", visiting: "游览信息", transportation: "交通指南", gallery: "照片集锦", reviews: "游客评价", faq: "常见问题", location: "地图位置" },
-    hero: { tags: ["滨海步道", "热带风光", "阿拉卡茹必游"], tagline: "巴西 · 塞尔希培州 · 阿拉卡茹", title: "蟹步道", titleAlt: "Passarela do Caranguejo / Crab Catwalk", subtitle: "Crab Catwalk · Passarela do Caranguejo · 海滨走廊 · 热带风情", cta: "探索蟹步道" },
+    hero: { tags: ["蟹肉美食街", "巨型螃蟹雕像", "阿拉卡茹夜生活"], tagline: "巴西 · 塞尔希培州 · 阿拉卡茹", title: "蟹步道：阿拉卡茹必玩指南", titleAlt: "Passarela do Caranguejo / Crab Catwalk", subtitle: "Passarela do Caranguejo · 蟹肉餐厅 · 巨型螃蟹 · 海边夜色", cta: "探索蟹步道" },
     rating: { reviews: "条评价", source: "Google 评论" },
     history: {
       title: "蟹步道（Crab Catwalk）的历史沿革与意义",
-      intro: `**蟹步道（Crab Catwalk / Passarela do Caranguejo）** 位于巴西塞尔希培州首府阿拉卡茹的阿塔莱亚区。它并非孤立存在的景点，而是全长约 6 公里、被誉为“巴西最美海滨大道”的**阿塔莱亚海滨大道（Orla de Atalaia）**的精华南段。\n\n**景点特色**：蟹步道是一条著名的海滨木板步道，以其众多的蟹肉餐厅而闻名。这里不仅是品尝当地美味蟹料理的最佳去处，也是欣赏南美洲壮丽日落的热门地点。\n\n**文化意义**：当夜幕降临，蟹步道才展现出它最具活力的一面。海风中不仅弥漫着美食的香气，还常伴随着巴西东北部特有的 **Forró（福罗）手风琴现场音乐**。许多餐厅在周末会化身为露天的文化秀场，让游客在海浪声中感受热烈欢快的拉美节奏。`
+      intro: `**蟹步道（Crab Catwalk / Passarela do Caranguejo）** 位于巴西塞尔希培州首府阿拉卡茹的阿塔莱亚区。它并非孤立存在的景点，而是全长约 6 公里、被誉为“巴西最美海滨大道”的**阿塔莱亚海滨大道（Orla de Atalaia）**的精华南段。\n\n**景点特色**：蟹步道是阿塔莱亚海滨大道（Orla de Atalaia）上最热闹的一段，以密集的蟹肉与海鲜餐厅、入口处的巨型螃蟹雕像，以及入夜后充满活力的街区氛围而闻名。\n\n**文化意义**：当夜幕降临，蟹步道才展现出它最具活力的一面。海风中不仅弥漫着美食的香气，还常伴随着巴西东北部特有的 **Forró（福罗）手风琴现场音乐**。许多餐厅在周末会化身为露天的文化秀场，让游客在海浪声中感受热烈欢快的拉美节奏。`
     },
     curiosities: {
       title: "隐藏的故事：蟹步道的趣味知识",
-      content: `**美食天堂**：在蟹步道品尝螃蟹不仅仅是进餐，更是一种沉浸式的文化体验。当地最正宗的吃法是点一份传统的“炖蟹”（Caranguejada），餐厅通常会为每位食客配备标志性的**小木槌和木砧板**。伴随着此起彼伏敲击蟹壳的清脆声响，佐以冰镇的巴西国民鸡尾酒（Caipirinha），这才是最地道的阿拉卡茹之夜。\n\n**日落观赏地**：蟹步道是阿拉卡茹观赏日落的最佳地点之一。傍晚时分，夕阳西下，海面波光粼粼，景色十分壮观。\n\n**旅游发展**：随着阿拉卡茹旅游业的发展，蟹步道逐渐成为该市最重要的旅游名片之一，吸引了越来越多的国内外游客。`
+      content: `**美食天堂**：在蟹步道品尝螃蟹不仅仅是进餐，更是一种沉浸式的文化体验。当地最正宗的吃法是点一份传统的“炖蟹”（Caranguejada），餐厅通常会为每位食客配备标志性的**小木槌和木砧板**。伴随着此起彼伏敲击蟹壳的清脆声响，佐以冰镇的巴西国民鸡尾酒（Caipirinha），这才是最地道的阿拉卡茹之夜。\n\n**傍晚与夜色**：蟹步道在傍晚至深夜最为热闹。餐厅灯光次第亮起，街头飘来 Forró 手风琴音乐，海风与美食香气交织，是阿拉卡茹最具代表性的夜生活场景之一。\n\n**旅游发展**：随着阿拉卡茹旅游业的发展，蟹步道逐渐成为该市最重要的旅游名片之一，吸引了越来越多的国内外游客。`
     },
     architecture: {
       title: "步道特色与结构设计",
-      intro: "蟹步道是一条精心设计的海滨木板步道，蜿蜒于海滩之上，为游客提供了舒适的海滨漫步体验。步道两侧遍布餐厅、小吃摊和旅游商店。",
+      intro: "蟹步道是阿塔莱亚海滨大道上一段以餐饮为主、滨海而建的步行街区，木栈道两侧遍布餐厅、小吃摊与旅游商店，是边走边吃、感受海风最方便的动线。",
       specs: {
-        structure: { title: "步道结构", content: "蟹步道采用木质地板铺设，结构坚固且富有热带风情。步道沿海岸线延伸，游客可以在这里悠闲漫步，欣赏大海美景。" },
+        structure: { title: "步道结构", content: "蟹步道采用木质铺装，结构坚固且富有热带风情。步道沿海岸线延伸，两侧餐厅林立，游客可以一边悠闲漫步，一边挑选心仪的蟹肉餐厅。" },
         design: { title: "设计特色", content: "步道的设计充分考虑了游客的体验，设有观景平台、休息区和餐饮区。夜晚在灯光的映衬下，步道更显浪漫氛围。" },
-        optics: { title: "观赏体验", content: "从蟹步道可以欣赏到壮丽的海景和日落。白天海水清澈蔚蓝，夜晚灯光璀璨，为游客提供全天候的视觉享受。" }
+        optics: { title: "观赏体验", content: "从蟹步道可以欣赏到海景与入夜后的街区氛围。白天海水清澈蔚蓝，傍晚至深夜餐厅灯光璀璨、街头音乐四起，是最有氛围的时段。" }
       },
       plaque: {
         title: "景点基本信息",
@@ -121,9 +121,9 @@ export const translations: Record<Locale, Translations> = {
           { label: "名称", value: "蟹步道（Crab Catwalk）/ Passarela do Caranguejo" },
           { label: "位置", value: "阿拉卡茹市阿塔莱亚区，巴西" },
           { label: "开放时间", value: "全天开放（餐厅营业时间各异）" },
-          { label: "类型", value: "海滨步道、旅游景点" },
-          { label: "特色", value: "蟹肉美食、日落观赏" },
-          { label: "推荐游览", value: "傍晚至日落时分" }
+          { label: "类型", value: "美食街区、旅游景点" },
+          { label: "特色", value: "蟹肉美食、夜间街区" },
+          { label: "推荐游览", value: "傍晚至深夜" }
         ]
       }
     },
@@ -133,29 +133,29 @@ export const translations: Record<Locale, Translations> = {
       items: [
         { name: "蟹肉餐厅", description: "蟹步道沿线有数十家蟹肉餐厅，提供各种蟹肉料理。这里是品尝塞尔希培州特色美食的最佳去处。" },
         { name: "巨型螃蟹雕像（Caranguejo Gigante）", description: "步道入口处的巨型螃蟹雕像是最热门的拍照打卡点，几乎每位游客都会在此合影。建议傍晚前往，此时光线柔和，顺光拍摄效果最好。" },
-        { name: "海滩与日落", description: "阿塔莱亚海滩（Praia de Atalaia）是阿拉卡茹最著名的海滩之一。在蟹步道上可以欣赏到壮丽的海景和日落。" }
+        { name: "街景与夜生活", description: "入夜后的蟹步道最有人气：霓虹灯、现场 Forró 音乐与海风交织，是阿拉卡茹最具代表性的夜生活场景之一。若想看海景与沙滩，可顺道前往相邻的阿塔莱亚海滩。" }
       ]
     },
     bestTime: {
       title: "最佳游览时间",
-      intro: "阿拉卡茹全年气候温暖，是理想的海滨旅游目的地。根据不同的季节和天气条件，您可以规划最佳的行程安排。\n\n**旱季（9月-次年3月）**：天气晴朗，降雨少，是游览阿拉卡茹的最佳时间。适合海滩活动、观赏日落和户外用餐。\n\n**雨季（4月-8月）**：降雨较多，但气温依然温暖。游客较少，酒店和餐厅价格更优惠，是体验当地文化的绝佳时机。",
+      intro: "阿拉卡茹全年气候温暖，是理想的海滨旅游目的地。根据不同的季节和天气条件，您可以规划最佳的行程安排。\n\n**旱季（9月-次年3月）**：天气晴朗，降雨少，是游览阿拉卡茹的最佳时间。适合海滩活动、傍晚漫步与户外用餐。\n\n**雨季（4月-8月）**：降雨较多，但气温依然温暖。游客较少，酒店和餐厅价格更优惠，是体验当地文化的绝佳时机。",
       seasons: [
-        { name: "🌞 旱季（9月-次年3月）", description: "旱季是游览阿拉卡茹的最佳时间。天气晴朗，降雨少，适合海滩活动和观赏日落。建议提前预订餐厅，尤其是周末和节假日。" },
+        { name: "🌞 旱季（9月-次年3月）", description: "旱季是游览阿拉卡茹的最佳时间。天气晴朗，降雨少，适合海滩活动和傍晚漫步。建议提前预订餐厅，尤其是周末和节假日。" },
         { name: "🌧️ 雨季（4月-8月）", description: "雨季降雨较多，但气温依然温暖。游客较少，是体验当地文化的绝佳时机。建议携带雨具，并关注天气预报。" }
       ]
     },
     visiting: {
       title: "实用游览指南",
       intro: "蟹步道是探索阿拉卡茹热带海滨风光的理想去处。为了获得最佳体验，请参考以下实用信息。",
-      hours: { title: "开放时间", content: "全天开放\n步道本身24小时开放，沿线餐厅通常在 11:00 - 23:00 营业", note: "建议傍晚前往，可以欣赏美丽的日落景色。" },
+      hours: { title: "开放时间", content: "全天开放\n步道本身24小时开放，沿线餐厅通常在 11:00 - 23:00 营业", note: "建议傍晚至夜间前往，可以感受最热闹的街区氛围与灯光。" },
       price: { title: "费用信息", content: "步道免费开放\n餐饮消费根据餐厅档次不同", note: "步道本身免费，但餐饮和娱乐消费需另行支付。" },
-      duration: { title: "游览时长", content: "建议游览时间：1-3小时\n可以漫步步道、品尝美食、欣赏日落和海景。", note: "时间可根据个人兴趣灵活安排。建议在傍晚时分前往，可以同时欣赏日落。" },
+      duration: { title: "游览时长", content: "建议游览时间：1-3小时\n可以漫步步道、品尝美食、感受街区夜色与海景。", note: "时间可根据个人兴趣灵活安排。建议在傍晚至夜间前往，可以同时感受夜生活氛围。" },
       tips: { title: "游览贴士与注意事项", items: [
         "⚠️ **防晒措施**：巴西热带阳光强烈，请做好防晒措施，携带防晒霜和帽子",
         "穿着舒适的鞋子，方便在步道上漫步",
         "可以拍照，但请尊重他人隐私",
         "品尝蟹肉时请注意食品安全，选择卫生条件良好的餐厅",
-        "傍晚和日落时分是最佳游览时段",
+        "傍晚至夜间是最佳游览时段",
         "可以顺便游览附近的阿塔莱亚海滩",
         "🌱 **文明游览**：请保持环境整洁，不要乱扔垃圾，共同维护这一美丽的海滨空间"
       ] }
@@ -170,15 +170,23 @@ export const translations: Record<Locale, Translations> = {
         "🌡️ **气候优势**：阿拉卡茹位于热带地区，全年温暖，是巴西气候最舒适的城市之一",
         "市区内建议使用打车软件（Uber/99）更安全便捷",
         "🚗 **自驾与停车**：海滨大道及蟹步道沿线设有较多公共停车位，但在旺季（如 12 月至 2 月）或周末的傍晚，车位会变得相对紧张，建议提前抵达或优先使用网约车出行。",
-        "傍晚时分前往可以欣赏到美丽的日落",
+        "傍晚至夜间前往可以感受最热闹的街区氛围",
         "可以与阿塔莱亚海滩、阿拉卡茹市中心等景点安排在同一行程",
         "阿拉卡茹的交通相对不太拥堵，出行较为方便"
       ] }
     },
     reviews: { 
       title: "游客评价与周边探索", 
-      subtitle: "来自蟹步道的声音：Google Maps 真实见证", 
+      subtitle: "来自蟹步道的声音：Google Maps 评价概览", 
       viewMore: "在 Google Maps 查看更多评价",
+      snapshotNote: "数据同步自 Google 地图（2026 年 10 月）的**聚合评分快照**。游客评价普遍聚焦于：成片的蟹肉餐厅、入口处的巨型螃蟹雕像，以及入夜后热闹的街区氛围。",
+      themesTitle: "游客最常提到的体验",
+      themes: [
+        "🔥 数十家蟹肉与海鲜餐厅，从正餐到小吃摊位一应俱全",
+        "🦀 入口处的巨型螃蟹雕像是必拍打卡点",
+        "🌙 傍晚至深夜的街区最有人气，现场 Forró 音乐与海边夜色",
+        "🚶 沿滨海大道轻松散步，海风与街景相伴"
+      ],
       nearbyTitle: "周边值得一游的景点",
       nearbyIntro: "游览完蟹步道后，您可以顺道游览以下附近景点：",
       nearbyItems: [
@@ -190,25 +198,25 @@ export const translations: Record<Locale, Translations> = {
     gallery: { title: "照片集锦", viewMore: "在 Google Maps 查看更多相片" },
     faq: { title: "常见问题", subtitle: "深入了解蟹步道", items: [
       { question: "蟹步道的开放时间和费用？", answer: "蟹步道全天24小时开放，免费进入。沿线餐厅通常在 11:00 - 23:00 营业，具体营业时间因餐厅而异。" },
-      { question: "游览蟹步道需要多长时间？", answer: "建议游览时间：1-3小时。您可以漫步步道、品尝美食、欣赏日落和海景。如果在餐厅用餐，时间可能会更长。" },
+      { question: "游览蟹步道需要多长时间？", answer: "建议游览时间：1-3小时。您可以漫步步道、品尝美食、感受街区夜色与海景。如果在餐厅用餐，时间可能会更长。" },
       { question: "蟹步道有什么特色美食？", answer: "蟹步道以蟹肉料理而闻名。这里的餐厅提供各种烹饪方式的蟹肉，包括煮蟹、烤蟹、蟹肉烩饭等。此外还有新鲜的海鲜和热带水果。" },
       { question: "参观蟹步道有什么注意事项？", answer: "⚠️ 防晒措施：巴西热带阳光强烈，请做好防晒。穿着舒适的鞋子。选择卫生条件良好的餐厅。请保持环境整洁，不要乱扔垃圾。" },
       { question: "蟹步道（Crab Catwalk）位于哪里？", answer: "蟹步道（Passarela do Caranguejo）位于巴西塞尔希培州阿拉卡茹市阿塔莱亚区，地址为 Av. Santos Dumont, 5600 - Atalaia, Aracaju - SE, 49035-240，Plus Code 为 2W5X+6J。" },
       { question: "蟹步道需要门票吗？免费吗？", answer: "蟹步道（Passarela do Caranguejo）是公共海滨空间，全年免费向公众开放，仅餐饮与其他消费需另行付费。" },
-      { question: "什么时间去蟹步道最好？", answer: "推荐傍晚前往，可同时欣赏日落与夜景。9月至次年3月的旱季天气晴朗、降雨较少，是阿拉卡茹的最佳旅行季节。" },
+      { question: "什么时间去蟹步道最好？", answer: "推荐傍晚至夜间前往，可同时感受夜生活氛围与街区灯光。9月至次年3月的旱季天气晴朗、降雨较少，是阿拉卡茹的最佳旅行季节。" },
       { question: "从阿拉卡茹机场怎么去蟹步道？", answer: "从圣玛利亚机场（AJU）乘坐出租车或网约车（Uber/99）约 15-25 分钟，车费约 20-40 雷亚尔，告知司机前往 Passarela do Caranguejo 即可。" }
     ]},
     location: { title: "蟹步道位置与到访指南", address: "Av. Santos Dumont, 5600 - Atalaia\nAracaju - SE, 49035-240\nBrazil\n（巴西阿拉卡茹）", openMaps: "在 Google Maps 查看位置" },
     about: {
       title: "关于蟹步道（Crab Catwalk / Passarela do Caranguejo）",
-      intro: "欢迎来到 **Crab Catwalk（蟹步道）**，它广为人知的名字是 **Passarela do Caranguejo**。景点位于 **巴西 · 塞尔希培州 · 阿拉卡茹** 的核心地带，是前往该地区旅行者的首要目的地。\n\n蟹步道坐落于 **阿塔莱亚海滨大道（Orla de Atalaia）** 沿线（Av. Santos Dumont, 5600 - Atalaia），以蟹肉餐厅、海风与壮丽日落闻名，全年免费向公众开放。",
+      intro: "欢迎来到 **Crab Catwalk（蟹步道）**，它广为人知的名字是 **Passarela do Caranguejo**。景点位于 **巴西 · 塞尔希培州 · 阿拉卡茹** 的核心地带，是前往该地区旅行者的首要目的地。\n\n蟹步道坐落于 **阿塔莱亚海滨大道（Orla de Atalaia）** 沿线（Av. Santos Dumont, 5600 - Atalaia），以成片的蟹肉餐厅、入口处的巨型螃蟹雕像与入夜后的热闹街区闻名，全年免费向公众开放。",
       breadcrumbTitle: "地理位置归属",
       nearbyCluster: "游览 **Crab Catwalk（蟹步道）** 时，游客可以轻松探索周边的历史地标与热门景点，包括 **阿塔莱亚海滩（Praia de Atalaia）** 与 **阿塔莱亚海滨大道（Orla de Atalaia）**。"
     },
     nature: {
       title: "自然地理与生态：红树林、潮汐与蟹",
       subtitle: "读懂这片海岸，才能真正读懂蟹步道",
-      intro: `蟹步道所在的**阿塔莱亚海滨**，坐落在阿拉卡茹市东侧的海岸平原上。这里并不是一片普通的热带沙滩：城市东面是开阔的大西洋，西面则是**塞尔希培河（Rio Sergipe）**与**瓦扎-巴里斯河（Rio Vaza-Barris）**入海形成的河口湾。河与海之间，发育出大片**红树林（manguezal）**——正是这些红树林，孕育了让阿拉卡茹闻名的螃蟹。\n\n换句话说，**蟹步道餐桌上的那只螃蟹，来自它身后那片泥泞的潮间带森林**。理解这一点，「吃蟹」就不只是消费，而是一次真正的自然观察。`,
+      intro: `蟹步道所在的**阿塔莱亚海滨**，坐落在阿拉卡茹市东侧的海岸平原上。这里并不是一片普通的热带沙滩：城市东面是开阔的大西洋，西面则是**塞尔希培河（Rio Sergipe）**与**瓦扎-巴里斯河（Rio Vaza-Barris）**入海形成的河口湾。河与海之间，发育出大片**红树林（manguezal）**——正是这些红树林，孕育了让阿拉卡茹闻名的螃蟹。\n\n换句话说，**蟹步道餐桌上的那只螃蟹，来自它身后那片泥泞的潮间带森林**。了解这一点，能让你在品尝蟹肉时，也读懂它背后的海岸生态——而非把步道本身当成观察泥滩螃蟹的地点。`,
       items: [
         { title: "① 红树林：海岸的育幼场", content: "红树林是生长在热带、亚热带潮间带的耐盐木本植物群落。它们的支柱根与呼吸根能抓住淤泥、削弱海浪，为幼鱼、虾蟹和贝类提供躲避天敌的场所。塞尔希培州拥有巴西东北部重要的红树林分布区，阿拉卡茹周边的河口正是其中之一。红树林同时是效率极高的「蓝碳」生态系统——单位面积的固碳能力远高于陆地森林，因此保护红树林本身也是气候行动的一部分。" },
         { title: "② 半日潮：每天两次的节奏", content: "这一带属于**半日潮**海域，一天内大致经历两次涨落，潮差通常在 1.5–2.5 米之间。涨潮时，红树林的呼吸根被淹没，蟹类退回洞穴；退潮时泥滩暴露，蟹类出洞觅食，也正是传统「捡蟹人」（catador de caranguejo）下滩作业的时间。步道边水位的变化，就是观察这一自然节律最直观的窗口。" },
@@ -223,7 +231,7 @@ export const translations: Record<Locale, Translations> = {
     culture: {
       title: "历史脉络与蟹文化",
       subtitle: "从一座规划城市，到一道地方风味",
-      intro: `要理解蟹步道，需要先理解它所在的城市。**阿拉卡茹（Aracaju）建于 1855 年，是巴西第一座经过统一规划而建成的城市**——为摆脱旧首府圣克里斯托旺的港口淤积问题，当时的省长伊纳西奥·巴尔博萨（Inácio Barbosa）在塞尔希培河与瓦扎-巴里斯河之间的平原上，按棋盘式路网从零建起了新都。今天市中心仍保留着整齐的方格街区与以日期命名的街道。\n\n而**蟹步道（Passarela do Caranguejo）**，是这座城市向海生长出的结果。作为**阿塔莱亚海滨大道（Orla de Atalaia）**上最具代表性的一段，它把「海」与「蟹」这两个阿拉卡茹最重要的符号，浓缩在一条木板步道上。`,
+      intro: `要理解蟹步道，需要先理解它所在的城市。**阿拉卡茹（Aracaju）建于 1855 年，是巴西第一座经过统一规划而建成的城市**——为摆脱旧首府圣克里斯托旺的港口淤积问题，当时的省长伊纳西奥·巴尔博萨（Inácio Barbosa）在塞尔希培河与瓦扎-巴里斯河之间的平原上，按棋盘式路网从零建起了新都。今天市中心仍保留着整齐的方格街区与以日期命名的街道。\n\n而**蟹步道（Passarela do Caranguejo）**，是这座城市向海生长出的结果。作为**阿塔莱亚海滨大道（Orla de Atalaia）**上最具代表性的一段滨海步行街区，它把「海」与「蟹」这两个阿拉卡茹最重要的符号，浓缩在同一条动线上。`,
       items: [
         { title: "① 阿塔莱亚海滨大道：城市的客厅", content: "阿塔莱亚海滨大道是阿拉卡茹最主要的滨海公共空间，全长约 6 公里，沿岸串联起海滩、广场、运动设施与餐饮区。它并非一天建成：随着城市向东扩展与多轮滨海整治，这里逐渐从单纯的临海道路，演变为本地人晨跑、傍晚散步、周末家庭聚会的「城市客厅」。蟹步道正是这条大道上人气最旺的一段。" },
         { title: "② 蟹与塞尔希培的身份认同", content: "在塞尔希培州，蟹不只是一道菜，更是一种地方身份的象征。州内河口与红树林面积广大，捕蟹（cata do caranguejo）曾是沿海社区重要的传统生计，形成了以家庭为单位、世代相传的作业方式。当地最经典的吃法是 **caranguejada（炖蟹）**：以番茄、洋葱、椰奶与香草慢炖，端上桌时配一副**小木槌和木砧板**——食客自己动手敲开蟹壳，敲击声此起彼伏，成为蟹步道夜晚特有的背景音。" },
@@ -330,23 +338,23 @@ export const translations: Record<Locale, Translations> = {
   },
   en: {
     nav: { history: "History", nature: "Nature", culture: "Culture", architecture: "Features", monuments: "Nearby", weather: "Weather", tide: "Tides", facilities: "Facilities", visiting: "Visit Info", transportation: "Transportation", gallery: "Gallery", reviews: "Reviews", faq: "FAQ", location: "Location" },
-    hero: { tags: ["Seaside Walkway", "Tropical Scenery", "Aracaju Must-See"], tagline: "Brazil · Sergipe · Aracaju", title: "Crab Catwalk", titleAlt: "Passarela do Caranguejo", subtitle: "Crab Catwalk · Passarela do Caranguejo · Seaside Promenade · Tropical Charm", cta: "Explore Crab Catwalk" },
+    hero: { tags: ["Crab Dining Street", "Giant Crab Statue", "Aracaju Nightlife"], tagline: "Brazil · Sergipe · Aracaju", title: "Crab Catwalk: Things to Do in Aracaju", titleAlt: "Passarela do Caranguejo", subtitle: "Passarela do Caranguejo · Crab Restaurants · Giant Crab · Seaside Nights", cta: "Explore Crab Catwalk" },
     rating: { reviews: "reviews", source: "Google Reviews" },
     history: {
       title: "History & Significance of Crab Catwalk",
-      intro: `**Crab Catwalk (Passarela do Caranguejo)** is located in the Atalaia district of Aracaju, the capital of Sergipe state in Brazil. It is not an isolated attraction, but rather the essence of the southern section of the **Orla de Atalaia** (Atalaia Seaside Avenue), a 6-kilometer stretch renowned as "Brazil's most beautiful seaside avenue".\n\n**Attraction Features**: The Crab Catwalk is a famous wooden seaside promenade, known for its numerous crab restaurants. It is not only the best place to taste local delicious crab dishes, but also a popular spot for watching spectacular sunsets in South America.\n\n**Cultural Significance**: When night falls, the Crab Catwalk reveals its most vibrant side. The sea breeze is not only filled with the aroma of food, but also often accompanied by live **Forró accordion music**, unique to northeastern Brazil. Many restaurants transform into open-air cultural stages on weekends, allowing visitors to feel the passionate and cheerful Latin American rhythms amidst the sound of ocean waves.`
+      intro: `**Crab Catwalk (Passarela do Caranguejo)** is located in the Atalaia district of Aracaju, the capital of Sergipe state in Brazil. It is not an isolated attraction, but rather the essence of the southern section of the **Orla de Atalaia** (Atalaia Seaside Avenue), a 6-kilometer stretch renowned as "Brazil's most beautiful seaside avenue".\n\n**Attraction Features**: The Crab Catwalk is the liveliest stretch of the Orla de Atalaia, known for its dense cluster of crab and seafood restaurants, the giant crab statue at the entrance, and the vibrant street atmosphere after dark.\n\n**Cultural Significance**: When night falls, the Crab Catwalk reveals its most vibrant side. The sea breeze is not only filled with the aroma of food, but also often accompanied by live **Forró accordion music**, unique to northeastern Brazil. Many restaurants transform into open-air cultural stages on weekends, allowing visitors to feel the passionate and cheerful Latin American rhythms amidst the sound of ocean waves.`
     },
     curiosities: {
       title: "Hidden Stories: Fun Facts About Crab Catwalk",
-      content: `**Food Paradise**: Tasting crab at the Crab Catwalk is not just dining, but an immersive cultural experience. The most authentic local way is to order a traditional "Caranguejada" (crab stew). Restaurants usually provide each diner with an iconic **small wooden mallet and cutting board**. Accompanied by the crisp sound of cracking crab shells and a chilled Brazilian national cocktail (Caipirinha), this is the most authentic Aracaju night.\n\n**Sunset Viewing Spot**: The Crab Catwalk is one of the best places to watch sunset in Aracaju. In the evening, the sun sets in the west, and the sea sparkles, creating a spectacular view.\n\n**Tourism Development**: With the development of tourism in Aracaju, the Crab Catwalk has gradually become one of the city's most important tourist attractions, attracting more and more domestic and foreign tourists.`
+      content: `**Food Paradise**: Tasting crab at the Crab Catwalk is not just dining, but an immersive cultural experience. The most authentic local way is to order a traditional "Caranguejada" (crab stew). Restaurants usually provide each diner with an iconic **small wooden mallet and cutting board**. Accompanied by the crisp sound of cracking crab shells and a chilled Brazilian national cocktail (Caipirinha), this is the most authentic Aracaju night.\n\n**Evenings & Nightlife**: The Crab Catwalk is at its liveliest from late afternoon to late night. Restaurant lights come on, Forró accordion music drifts through the street, and the sea breeze mixes with the aroma of food — one of Aracaju's most representative nightlife scenes.\n\n**Tourism Development**: With the development of tourism in Aracaju, the Crab Catwalk has gradually become one of the city's most important tourist attractions, attracting more and more domestic and foreign tourists.`
     },
     architecture: {
       title: "Walkway Features & Structure Design",
-      intro: "The Crab Catwalk is a carefully designed wooden seaside promenade that winds along the beach, providing visitors with a comfortable seaside walking experience. The walkway is lined with restaurants, snack stands and tourist shops.",
+      intro: "The Crab Catwalk is a seaside dining street along the Orla de Atalaia, built for strolling and eating. The boardwalk is lined with restaurants, snack stands and tourist shops — the most convenient route to walk, eat and feel the sea breeze.",
       specs: {
-        structure: { title: "Walkway Structure", content: "The Crab Catwalk is paved with wooden planks, with a sturdy structure and tropical flair. The walkway extends along the coastline, where visitors can leisurely stroll and enjoy the sea views." },
+        structure: { title: "Walkway Structure", content: "The Crab Catwalk is paved with wooden planks, with a sturdy structure and tropical flair. It extends along the coastline, lined with restaurants, where visitors can stroll leisurely and pick their favourite crab spot." },
         design: { title: "Design Features", content: "The design of the walkway fully considers the visitor experience, with viewing platforms, rest areas and dining areas. At night, under the lighting, the walkway appears even more romantic." },
-        optics: { title: "Viewing Experience", content: "From the Crab Catwalk, you can enjoy spectacular sea views and sunsets. The sea water is clear and blue during the day, and the lights are bright at night, providing visitors with all-day visual enjoyment." }
+        optics: { title: "Viewing Experience", content: "From the Crab Catwalk you can enjoy the sea view and the street's night atmosphere. The water is clear and blue by day; from late afternoon to late night the restaurant lights come on and street music fills the air — the most atmospheric time to be there." }
       },
       plaque: {
         title: "Basic Attraction Information",
@@ -354,9 +362,9 @@ export const translations: Record<Locale, Translations> = {
           { label: "Name", value: "Crab Catwalk / Passarela do Caranguejo" },
           { label: "Location", value: "Atalaia District, Aracaju, Brazil" },
           { label: "Opening Hours", value: "Open 24 hours (restaurant hours vary)" },
-          { label: "Type", value: "Seaside promenade, Tourist attraction" },
-          { label: "Features", value: "Crab cuisine, Sunset viewing" },
-          { label: "Best Time to Visit", value: "Evening to sunset" }
+          { label: "Type", value: "Seaside dining street, Tourist attraction" },
+          { label: "Features", value: "Crab cuisine, Nightlife" },
+          { label: "Best Time to Visit", value: "Late afternoon to late night" }
         ]
       }
     },
@@ -366,29 +374,29 @@ export const translations: Record<Locale, Translations> = {
       items: [
         { name: "Crab Restaurants", description: "There are dozens of crab restaurants along the Crab Catwalk, offering various crab dishes. This is the best place to taste Sergipe's specialty cuisine." },
         { name: "Giant Crab Statue (Caranguejo Gigante)", description: "The giant crab statue near the entrance to the walkway is the most popular photo spot — almost every visitor stops for a picture. Go in the late afternoon, when the light is soft and falls on the front of the statue." },
-        { name: "Beach & Sunset", description: "Atalaia Beach (Praia de Atalaia) is one of the most famous beaches in Aracaju. You can enjoy spectacular sea views and sunsets from the Crab Catwalk." }
+        { name: "Street Scenes & Nightlife", description: "The Crab Catwalk is at its liveliest after dark: neon lights, live Forró music and the sea breeze combine into one of Aracaju's most representative nightlife scenes. For sea views and sand, head to the neighbouring Atalaia Beach." }
       ]
     },
     bestTime: {
       title: "Best Time to Visit",
-      intro: "Aracaju has warm weather year-round, making it an ideal seaside tourist destination. You can plan the best itinerary according to different seasons and weather conditions.\n\n**Dry Season (September-March)**: Sunny weather with little rain, the best time to visit Aracaju. Suitable for beach activities, sunset watching and outdoor dining.\n\n**Rainy Season (April-August)**: More rainfall, but temperatures remain warm. Fewer tourists, better prices for hotels and restaurants, an excellent time to experience local culture.",
+      intro: "Aracaju has warm weather year-round, making it an ideal seaside tourist destination. You can plan the best itinerary according to different seasons and weather conditions.\n\n**Dry Season (September-March)**: Sunny weather with little rain, the best time to visit Aracaju. Suitable for beach activities, evening strolls and outdoor dining.\n\n**Rainy Season (April-August)**: More rainfall, but temperatures remain warm. Fewer tourists, better prices for hotels and restaurants, an excellent time to experience local culture.",
       seasons: [
-        { name: "🌞 Dry Season (September-March)", description: "The dry season is the best time to visit Aracaju. Sunny weather with little rain, suitable for beach activities and sunset watching. It is recommended to book restaurants in advance, especially on weekends and holidays." },
+        { name: "🌞 Dry Season (September-March)", description: "The dry season is the best time to visit Aracaju. Sunny weather with little rain, suitable for beach activities and evening strolls. It is recommended to book restaurants in advance, especially on weekends and holidays." },
         { name: "🌧️ Rainy Season (April-August)", description: "More rainfall in the rainy season, but temperatures remain warm. Fewer tourists, an excellent time to experience local culture. It is recommended to bring rain gear and pay attention to weather forecasts." }
       ]
     },
     visiting: {
       title: "Practical Visit Guide",
       intro: "The Crab Catwalk is an ideal place to explore the tropical seaside scenery of Aracaju. For the best experience, please refer to the following practical information.",
-      hours: { title: "Opening Hours", content: "Open 24 hours\nWalkway open all day, restaurants usually 11:00 - 23:00", note: "It is recommended to go in the evening to enjoy the beautiful sunset." },
+      hours: { title: "Opening Hours", content: "Open 24 hours\nWalkway open all day, restaurants usually 11:00 - 23:00", note: "It is best to go from late afternoon to night, when the street atmosphere and lights are liveliest." },
       price: { title: "Cost Information", content: "Walkway free admission\nDining costs vary by restaurant", note: "The walkway itself is free, but dining and entertainment costs are paid separately." },
-      duration: { title: "Visit Duration", content: "Suggested visit time: 1-3 hours\nYou can stroll the walkway, taste food, and enjoy sunset and sea views.", note: "Time can be arranged flexibly according to personal interest. It is recommended to go in the evening to enjoy the sunset." },
+      duration: { title: "Visit Duration", content: "Suggested visit time: 1-3 hours\nYou can stroll the walkway, taste food, and enjoy the night-time street scene and sea views.", note: "Time can be arranged flexibly according to personal interest. It is recommended to go from late afternoon to night to feel the nightlife atmosphere." },
       tips: { title: "Visit Tips & Important Notes", items: [
         "⚠️ **Sun Protection**: Brazilian tropical sun is strong, please take sun protection measures, bring sunscreen and hat",
         "Wear comfortable shoes for walking on the walkway",
         "Photography is allowed, but please respect others' privacy",
         "Pay attention to food safety when tasting crab, choose restaurants with good hygiene conditions",
-        "Evening and sunset are the best visiting times",
+        "Late afternoon and night are the best visiting times",
         "You can also visit the nearby Atalaia Beach",
         "🌱 **Civilized Visit**: Please keep the environment clean, do not litter, and jointly maintain this beautiful seaside space"
       ] }
@@ -403,15 +411,23 @@ export const translations: Record<Locale, Translations> = {
         "🌡️ **Climate Advantage**: Aracaju is located in the tropical region, warm all year round, one of the most comfortable cities in Brazil in terms of climate",
         "Using ride-hailing apps (Uber/99) in the city is safer and more convenient",
         "🚗 **Driving & Parking**: There are many public parking spaces along the seaside avenue and Crab Catwalk, but during peak season (December to February) or weekend evenings, parking can be relatively tight. It's recommended to arrive early or prioritize ride-hailing services.",
-        "Go in the evening to enjoy the beautiful sunset",
+        "Go from late afternoon to night to enjoy the lively street atmosphere",
         "Combine with Atalaia Beach, downtown Aracaju and other attractions in the same trip",
         "Aracaju's traffic is relatively less congested, making travel more convenient"
       ] }
     },
     reviews: { 
       title: "Visitor Reviews & Nearby Exploration", 
-      subtitle: "Voices from Crab Catwalk: Real Testimonials from Google Maps", 
+      subtitle: "Crab Catwalk on Google Maps: an overview of visitor ratings",
       viewMore: "View More Reviews on Google Maps",
+      snapshotNote: "**Aggregated rating snapshot** from Google Maps (October 2026). Reviews consistently highlight the cluster of crab restaurants, the giant crab statue at the entrance, and the lively night-time street atmosphere.",
+      themesTitle: "What visitors mention most",
+      themes: [
+        "🔥 Dozens of crab and seafood restaurants, from full-service dining to snack stalls",
+        "🦀 The giant crab statue at the entrance is a must-photo spot",
+        "🌙 The street is liveliest from late afternoon to late night, with live Forró music and seaside lights",
+        "🚶 An easy stroll along the waterfront avenue, with sea breeze and street views"
+      ],
       nearbyTitle: "Nearby Attractions Worth Visiting",
       nearbyIntro: "After visiting Crab Catwalk, you can easily visit the following nearby attractions:",
       nearbyItems: [
@@ -423,25 +439,25 @@ export const translations: Record<Locale, Translations> = {
     gallery: { title: "Photo Gallery", viewMore: "View More Photos on Google Maps" },
     faq: { title: "Frequently Asked Questions", subtitle: "Learn More About Crab Catwalk", items: [
       { question: "What are the opening hours and cost of Crab Catwalk?", answer: "The Crab Catwalk is open 24 hours a day and free to enter. Restaurants along the walkway usually operate from 11:00 - 23:00, specific hours vary by restaurant." },
-      { question: "How long does it take to visit Crab Catwalk?", answer: "Suggested visit time: 1-3 hours. You can stroll the walkway, taste food, and enjoy sunset and sea views. If you dine at restaurants, it may take longer." },
+      { question: "How long does it take to visit Crab Catwalk?", answer: "Suggested visit time: 1-3 hours. You can stroll the walkway, taste food, and enjoy the night-time street scene and sea views. If you dine at restaurants, it may take longer." },
       { question: "What specialty foods are available at Crab Catwalk?", answer: "Crab Catwalk is famous for its crab dishes. Restaurants here offer crab prepared in various cooking styles, including boiled crab, grilled crab, crab rice, etc. There are also fresh seafood and tropical fruits." },
       { question: "What are the important notes for visiting Crab Catwalk?", answer: "⚠️ Sun Protection: Brazilian tropical sun is strong, please protect yourself from the sun. Wear comfortable shoes. Choose restaurants with good hygiene conditions. Please keep the environment clean and do not litter." },
       { question: "Where is Crab Catwalk (Passarela do Caranguejo) located?", answer: "Crab Catwalk is located in the Atalaia district of Aracaju, Sergipe, Brazil, at Av. Santos Dumont, 5600 - Atalaia, Aracaju - SE, 49035-240. Its Plus Code is 2W5X+6J." },
       { question: "Is Crab Catwalk free to visit?", answer: "Yes. Crab Catwalk (Passarela do Caranguejo) is a public seaside space and is free to visit year-round; only dining and other purchases are paid separately." },
-      { question: "What is the best time to visit Crab Catwalk?", answer: "The evening is best, so you can enjoy both the sunset and the lively night atmosphere. The dry season from September to March offers sunny weather with little rain." },
+      { question: "What is the best time to visit Crab Catwalk?", answer: "Late afternoon to night is best, so you can enjoy both the evening street scene and the lively night atmosphere. The dry season from September to March offers sunny weather with little rain." },
       { question: "How do I get to Crab Catwalk from Aracaju airport?", answer: "From Santa Maria Airport (AJU), a taxi or ride-hailing service (Uber/99) takes about 15-25 minutes and costs around 20-40 Brazilian Reais. Just tell the driver you are going to Passarela do Caranguejo." }
     ]},
     location: { title: "Location & How to Visit Passarela do Caranguejo in Aracaju", address: "Av. Santos Dumont, 5600 - Atalaia\nAracaju - SE, 49035-240\nBrazil", openMaps: "View Location on Google Maps" },
     about: {
       title: "About Crab Catwalk (Passarela do Caranguejo)",
-      intro: "Welcome to **Crab Catwalk**, widely recognized as the central **Passarela do Caranguejo**. Located in the heart of **Aracaju**, **Sergipe**, **Brazil**, this destination serves as a primary hub for travelers visiting the region.\n\nThe promenade runs along the **Orla de Atalaia** waterfront at Av. Santos Dumont, 5600 - Atalaia, and is famous for its crab restaurants, ocean breeze and spectacular sunsets. It is open to the public free of charge all year round.",
+      intro: "Welcome to **Crab Catwalk**, widely recognized as the central **Passarela do Caranguejo**. Located in the heart of **Aracaju**, **Sergipe**, **Brazil**, this destination serves as a primary hub for travelers visiting the region.\n\nThe promenade runs along the **Orla de Atalaia** waterfront at Av. Santos Dumont, 5600 - Atalaia, and is famous for its cluster of crab restaurants, the giant crab statue at the entrance and its lively night-time street atmosphere. It is open to the public free of charge all year round.",
       breadcrumbTitle: "Geographic hierarchy",
       nearbyCluster: "When visiting **Crab Catwalk**, visitors can easily explore surrounding historical landmarks and points of interest, including **Praia de Atalaia (Atalaia Beach)** and **Orla de Atalaia (Atalaia Waterfront)**."
     },
     nature: {
       title: "Geography & Ecology: Mangroves, Tides and Crabs",
       subtitle: "Understanding this coastline is the key to understanding the promenade",
-      intro: `The **Atalaia waterfront** where the promenade sits lies on the coastal plain east of Aracaju. This is not an ordinary tropical beach: the city faces the open Atlantic to the east, while to the west the **Rio Sergipe** and the **Rio Vaza-Barris** meet the sea in wide estuaries. Between river and ocean, extensive **mangroves (manguezal)** have developed — and those mangroves are what produced the crab that made Aracaju famous.\n\nIn other words, **the crab on your plate at the promenade comes from the muddy intertidal forest just behind it**. Once you know that, eating crab here stops being mere consumption and becomes a genuine act of nature observation.`,
+      intro: `The **Atalaia waterfront** where the promenade sits lies on the coastal plain east of Aracaju. This is not an ordinary tropical beach: the city faces the open Atlantic to the east, while to the west the **Rio Sergipe** and the **Rio Vaza-Barris** meet the sea in wide estuaries. Between river and ocean, extensive **mangroves (manguezal)** have developed — and those mangroves are what produced the crab that made Aracaju famous.\n\nIn other words, **the crab on your plate at the promenade comes from the muddy intertidal forest just behind it**. Knowing this lets you read the coastal ecology behind the dish as you eat — the promenade itself is a dining street, not a place to watch mudflat crabs up close.`,
       items: [
         { title: "① Mangroves: the nursery of the coast", content: "Mangroves are salt-tolerant woody plant communities that grow in tropical and subtropical intertidal zones. Their prop roots and pneumatophores trap sediment, absorb wave energy and give juvenile fish, shrimp, crabs and shellfish a place to hide from predators. Sergipe holds some of the most important mangrove areas in northeastern Brazil, and the estuaries around Aracaju are part of them. Mangroves are also exceptionally efficient 'blue carbon' ecosystems — storing far more carbon per hectare than most terrestrial forests, which makes protecting them a form of climate action too." },
         { title: "② Semidiurnal tides: a rhythm twice a day", content: "This stretch of coast experiences **semidiurnal tides**, with roughly two high and two low waters each day and a tidal range usually between 1.5 and 2.5 metres. At high tide the mangrove pneumatophores are submerged and the crabs retreat into their burrows; at low tide the mudflats are exposed, the crabs emerge to feed, and traditional crab collectors (catadores de caranguejo) head out onto the flats. The water level beside the promenade is the most direct window onto this rhythm." },
@@ -456,7 +472,7 @@ export const translations: Record<Locale, Translations> = {
     culture: {
       title: "History and Crab Culture",
       subtitle: "From a planned city to a regional food icon",
-      intro: `To understand the promenade you first have to understand the city around it. **Aracaju was founded in 1855 and is the first Brazilian city built to a single, unified plan.** To escape the silting port of the old capital, São Cristóvão, the provincial president Inácio Barbosa laid out a brand-new capital from scratch on the plain between the Rio Sergipe and the Rio Vaza-Barris, using a grid of streets that still shapes the city centre today, including its date-named avenues.\n\nThe **Passarela do Caranguejo** is what happened when that city grew towards the sea. As the most representative stretch of the **Orla de Atalaia**, it condenses Aracaju's two defining symbols — the ocean and the crab — into a single wooden promenade.`,
+      intro: `To understand the promenade you first have to understand the city around it. **Aracaju was founded in 1855 and is the first Brazilian city built to a single, unified plan.** To escape the silting port of the old capital, São Cristóvão, the provincial president Inácio Barbosa laid out a brand-new capital from scratch on the plain between the Rio Sergipe and the Rio Vaza-Barris, using a grid of streets that still shapes the city centre today, including its date-named avenues.\n\nThe **Passarela do Caranguejo** is what happened when that city grew towards the sea. As the most representative dining-and-walk stretch of the **Orla de Atalaia**, it condenses Aracaju's two defining symbols — the ocean and the crab — into one seaside promenade.`,
       items: [
         { title: "① Orla de Atalaia: the city's living room", content: "The Orla de Atalaia is Aracaju's main waterfront public space, roughly 6 km long, linking beaches, squares, sports facilities and restaurant areas. It was not built in a day: as the city expanded eastwards and the waterfront was redeveloped over several decades, a simple coastal road gradually became the place where locals jog at dawn, walk in the evening and gather with family at weekends. The Passarela do Caranguejo is the busiest stretch of it." },
         { title: "② The crab and Sergipe identity", content: "In Sergipe the crab is more than a dish; it is a marker of local identity. With extensive estuaries and mangroves, crab collecting (cata do caranguejo) has long been an important traditional livelihood along the coast, organised around families and passed down through generations. The classic local preparation is **caranguejada**, a slow-cooked stew of tomato, onion, coconut milk and herbs, served with a **small wooden mallet and board**. Guests crack the shells themselves, and the clatter of mallets becomes the distinctive background soundtrack of an evening on the promenade." },
@@ -563,23 +579,23 @@ export const translations: Record<Locale, Translations> = {
   },
   pt: {
     nav: { history: "História", nature: "Natureza", culture: "Cultura", architecture: "Características", monuments: "Arredores", weather: "Clima", tide: "Marés", facilities: "Serviços", visiting: "Informações", transportation: "Transporte", gallery: "Galeria", reviews: "Avaliações", faq: "FAQ", location: "Localização" },
-    hero: { tags: ["Passeio Marítimo", "Paisagem Tropical", "Imperdível em Aracaju"], tagline: "Brasil · Sergipe · Aracaju", title: "Passarela do Caranguejo", titleAlt: "Crab Catwalk", subtitle: "Crab Catwalk · Passarela do Caranguejo · Passeio Marítimo · Encanto Tropical", cta: "Explorar a Passarela" },
+    hero: { tags: ["Rua de Gastronomia", "Caranguejo Gigante", "Vida Noturna em Aracaju"], tagline: "Brasil · Sergipe · Aracaju", title: "Passarela do Caranguejo: O que fazer em Aracaju", titleAlt: "Crab Catwalk", subtitle: "Passarela do Caranguejo · Restaurantes de Caranguejo · Caranguejo Gigante · Noite à Beira-Mar", cta: "Explorar a Passarela" },
     rating: { reviews: "avaliações", source: "Google Avaliações" },
     history: {
       title: "História e Significância da Passarela do Caranguejo",
-      intro: `A **Passarela do Caranguejo (Crab Catwalk)** está localizada no bairro de Atalaia, em Aracaju, capital do estado de Sergipe, no Brasil. Não é uma atração isolada, mas sim a essência da seção sul da **Orla de Atalaia**, uma extensão de 6 quilômetros conhecida como a "avenida costeira mais bonita do Brasil".\n\n**Características do Atrativo**: A Passarela do Caranguejo é um famoso passeio marítimo de madeira, conhecido por seus numerosos restaurantes de caranguejo. É não apenas o melhor lugar para provar os deliciosos pratos de caranguejo locais, mas também um local popular para assistir aos espetaculares pores do sol na América do Sul.\n\n**Significado Cultural**: Quando a noite cai, a Passarela do Caranguejo revela seu lado mais vibrante. A brisa do mar não é apenas preenchida com o aroma da comida, mas também frequentemente acompanhada por **música ao vivo de sanfona (Forró)**, típica do nordeste brasileiro. Muitos restaurantes se transformam em palcos culturais ao ar livre nos fins de semana, permitindo que os visitantes sintam os ritmos latino-americanos apaixonantes e alegres em meio ao som das ondas do mar.`
+      intro: `A **Passarela do Caranguejo (Crab Catwalk)** está localizada no bairro de Atalaia, em Aracaju, capital do estado de Sergipe, no Brasil. Não é uma atração isolada, mas sim a essência da seção sul da **Orla de Atalaia**, uma extensão de 6 quilômetros conhecida como a "avenida costeira mais bonita do Brasil".\n\n**Características do Atraativo**: A Passarela do Caranguejo é o trecho mais movimentado da Orla de Atalaia, conhecido pelo conjunto de restaurantes de caranguejo e frutos do mar, pela estátua gigante de caranguejo na entrada e pelo animado clima de rua após o anoitecer.\n\n**Significado Cultural**: Quando a noite cai, a Passarela do Caranguejo revela seu lado mais vibrante. A brisa do mar não é apenas preenchida com o aroma da comida, mas também frequentemente acompanhada por **música ao vivo de sanfona (Forró)**, típica do nordeste brasileiro. Muitos restaurantes se transformam em palcos culturais ao ar livre nos fins de semana, permitindo que os visitantes sintam os ritmos latino-americanos apaixonantes e alegres em meio ao som das ondas do mar.`
     },
     curiosities: {
       title: "Histórias Ocultas: Curiosidades sobre a Passarela",
-      content: `**Paraíso Gastronômico**: Degustar caranguejo na Passarela do Caranguejo não é apenas uma refeição, mas uma experiência cultural imersiva. A maneira local mais autêntica é pedir uma tradicional "Caranguejada". Os restaurantes geralmente fornecem a cada cliente um icônico **martelinho e tábua de madeira**. Acompanhado pelo som crocante de quebrar cascas de caranguejo e uma Caipirinha gelada, esta é a noite mais autêntica de Aracaju.\n\n**Lugar para Ver Pores do Sol**: A Passarela do Caranguejo é um dos melhores lugares para ver o pôr do sol em Aracaju. À tarde, o sol se põe no oeste e o mar brilha, criando uma vista espetacular.\n\n**Desenvolvimento Turístico**: Com o desenvolvimento do turismo em Aracaju, a Passarela do Caranguejo tornou-se gradualmente um dos atrativos turísticos mais importantes da cidade, atraindo cada vez mais turistas nacionais e estrangeiros.`
+      content: `**Paraíso Gastronômico**: Degustar caranguejo na Passarela do Caranguejo não é apenas uma refeição, mas uma experiência cultural imersiva. A maneira local mais autêntica é pedir uma tradicional "Caranguejada". Os restaurantes geralmente fornecem a cada cliente um icônico **martelinho e tábua de madeira**. Acompanhado pelo som crocante de quebrar cascas de caranguejo e uma Caipirinha gelada, esta é a noite mais autêntica de Aracaju.\n\n**Fim de Tarde e Noite**: A Passarela do Caranguejo fica mais animada do final da tarde à madrugada. As luzes dos restaurantes acendem, a música de sanfona (Forró) ecoa pela rua, e a brisa do mar se mistura ao aroma da comida — um dos cenários mais representativos da vida noturna de Aracaju.\n\n**Desenvolvimento Turístico**: Com o desenvolvimento do turismo em Aracaju, a Passarela do Caranguejo tornou-se gradualmente um dos atrativos turísticos mais importantes da cidade, atraindo cada vez mais turistas nacionais e estrangeiros.`
     },
     architecture: {
       title: "Características do Passeio e Design Estrutural",
-      intro: "A Passarela do Caranguejo é um passeio marítimo de madeira cuidadosamente projetado que serpenteia ao longo da praia, proporcionando aos visitantes uma experiência de caminhada costeira confortável. O passeio é ladeado por restaurantes, barracas de comida e lojas turísticas.",
+      intro: "A Passarela do Caranguejo é uma rua de gastronomia à beira-mar, na Orla de Atalaia, pensada para caminhar e comer. O calçadão de madeira é ladeado por restaurantes, barracas de comida e lojas turísticas — o trajeto mais conveniente para caminhar, comer e sentir a brisa do mar.",
       specs: {
-        structure: { title: "Estrutura do Passeio", content: "A Passarela do Caranguejo é pavimentada com tábuas de madeira, com estrutura sólida e ar tropical. O passeio se estende ao longo da linha costeira, onde os visitantes podem caminhar com calma e desfrutar das vistas para o mar." },
+        structure: { title: "Estrutura do Passeio", content: "A Passarela do Caranguejo é pavimentada com tábuas de madeira, com estrutura sólida e ar tropical. Estende-se ao longo da linha costeira, ladeada por restaurantes, onde os visitantes podem caminhar com calma e escolher o seu lugar de caranguejo favorito." },
         design: { title: "Características do Design", content: "O design do passeio considera totalmente a experiência do visitante, com plataformas de observação, áreas de descanso e áreas de jantar. À noite, sob a iluminação, o passeio parece ainda mais romântico." },
-        optics: { title: "Experiência de Visualização", content: "Da Passarela do Caranguejo, você pode desfrutar de espetaculares vistas para o mar e pores do sol. A água do mar é clara e azul durante o dia, e as luzes brilham à noite, proporcionando aos visitantes prazer visual o dia todo." }
+        optics: { title: "Experiência de Visualização", content: "Da Passarela do Caranguejo você pode desfrutar da vista para o mar e do clima de rua após o anoitecer. A água é clara e azul de dia; do final da tarde à madrugada as luzes dos restaurantes acendem e a música de rua toma conta — o momento mais animado de estar lá." }
       },
       plaque: {
         title: "Informações Básicas do Atrativo",
@@ -587,9 +603,9 @@ export const translations: Record<Locale, Translations> = {
           { label: "Nome", value: "Passarela do Caranguejo / Crab Catwalk" },
           { label: "Localização", value: "Bairro de Atalaia, Aracaju, Brasil" },
           { label: "Horário", value: "Aberto 24 horas (horários dos restaurantes variam)" },
-          { label: "Tipo", value: "Passeio marítimo, Atrativo turístico" },
-          { label: "Características", value: "Culinária de caranguejo, Vista do pôr do sol" },
-          { label: "Melhor Época", value: "Tarde até o pôr do sol" }
+          { label: "Tipo", value: "Rua de gastronomia, Atraativo turístico" },
+          { label: "Características", value: "Culinária de caranguejo, Vida noturna" },
+          { label: "Melhor Época", value: "Final da tarde à noite" }
         ]
       }
     },
@@ -599,29 +615,29 @@ export const translations: Record<Locale, Translations> = {
       items: [
         { name: "Restaurantes de Caranguejo", description: "Existem dezenas de restaurantes de caranguejo ao longo da Passarela do Caranguejo, oferecendo vários pratos de caranguejo. Este é o melhor lugar para provar a culinária especial de Sergipe." },
         { name: "Caranguejo Gigante", description: "A estátua do caranguejo gigante, na entrada da passarela, é o ponto de foto mais procurado — quase todo visitante para para registrar o momento. Vá no fim da tarde, quando a luz é mais suave e incide na frente da estátua." },
-        { name: "Praia e Pôr do Sol", description: "A Praia de Atalaia (Praia de Atalaia) é uma das praias mais famosas de Aracaju. Você pode desfrutar de vistas espetaculares para o mar e pores do sol da Passarela do Caranguejo." }
+        { name: "Cena de Rua e Vida Noturna", description: "A Passarela do Caranguejo fica mais animada após o anoitecer: luzes de neon, música de Forró ao vivo e a brisa do mar formam um dos cenários mais representativos da vida noturna de Aracaju. Para mar e areia, siga para a vizinha Praia de Atalaia." }
       ]
     },
     bestTime: {
       title: "Melhor Época para Visitar",
-      intro: "Aracaju tem clima quente o ano todo, sendo um destino turístico costeiro ideal. Você pode planejar o melhor itinerário de acordo com diferentes estações e condições climáticas.\n\n**Estação Seca (setembro-março)**: Tempo ensolarado com pouca chuva, a melhor época para visitar Aracaju. Adequado para atividades de praia, observação do pôr do sol e jantares ao ar livre.\n\n**Estação Chuvosa (abril-agosto)**: Mais chuvas, mas as temperaturas permanecem quentes. Menos turistas, melhores preços para hotéis e restaurantes, uma excelente oportunidade para experimentar a cultura local.",
+      intro: "Aracaju tem clima quente o ano todo, sendo um destino turístico costeiro ideal. Você pode planejar o melhor itinerário de acordo com diferentes estações e condições climáticas.\n\n**Estação Seca (setembro-março)**: Tempo ensolarado com pouca chuva, a melhor época para visitar Aracaju. Adequado para atividades de praia, caminhadas ao entardecer e jantares ao ar livre.\n\n**Estação Chuvosa (abril-agosto)**: Mais chuvas, mas as temperaturas permanecem quentes. Menos turistas, melhores preços para hotéis e restaurantes, uma excelente oportunidade para experimentar a cultura local.",
       seasons: [
-        { name: "🌞 Estação Seca (setembro-março)", description: "A estação seca é a melhor época para visitar Aracaju. Tempo ensolarado com pouca chuva, adequado para atividades de praia e observação do pôr do sol. Recomenda-se reservar restaurantes com antecedência, especialmente nos fins de semana e feriados." },
+        { name: "🌞 Estação Seca (setembro-março)", description: "A estação seca é a melhor época para visitar Aracaju. Tempo ensolarado com pouca chuva, adequada para atividades de praia e caminhadas ao entardecer. Recomenda-se reservar restaurantes com antecedência, especialmente nos fins de semana e feriados." },
         { name: "🌧️ Estação Chuvosa (abril-agosto)", description: "Mais chuvas na estação chuvosa, mas as temperaturas permanecem quentes. Menos turistas, uma excelente oportunidade para experimentar a cultura local. Recomenda-se levar equipamento de chuva e prestar atenção às previsões meteorológicas." }
       ]
     },
     visiting: {
       title: "Guia Prática de Visita",
       intro: "A Passarela do Caranguejo é um lugar ideal para explorar a paisagem costeira tropical de Aracaju. Para obter a melhor experiência, consulte as seguintes informações práticas.",
-      hours: { title: "Horário de Abertura", content: "Aberto 24 horas\nPasseio aberto o dia todo, restaurantes geralmente 11:00 - 23:00", note: "Recomenda-se ir à tarde para desfrutar do belo pôr do sol." },
+      hours: { title: "Horário de Abertura", content: "Aberto 24 horas\nPasseio aberto o dia todo, restaurantes geralmente 11:00 - 23:00", note: "Recomenda-se ir do final da tarde à noite, quando o clima de rua e as luzes estão mais animados." },
       price: { title: "Informações de Custo", content: "Entrada gratuita no passeio\nCustos de refeição variam conforme o restaurante", note: "O passeio em si é gratuito, mas os custos de refeição e entretenimento são pagos separadamente." },
-      duration: { title: "Duração da Visita", content: "Tempo sugerido: 1-3 horas\nVocê pode caminhar pelo passeio, provar comida e desfrutar do pôr do sol e vistas para o mar.", note: "O tempo pode ser organizado de forma flexível de acordo com o interesse pessoal. Recomenda-se ir à tarde para desfrutar do pôr do sol." },
+      duration: { title: "Duração da Visita", content: "Tempo sugerido: 1-3 horas\nVocê pode caminhar pelo passeio, provar comida e sentir o clima de rua à noite e as vistas para o mar.", note: "O tempo pode ser organizado de forma flexível de acordo com o interesse pessoal. Recomenda-se ir do final da tarde à noite para sentir a vida noturna." },
       tips: { title: "Dicas de Visita e Notas Importantes", items: [
         "⚠️ **Proteção Solar**: O sol tropical brasileiro é forte, por favor tome medidas de proteção solar, traga protetor solar e chapéu",
         "Use sapatos confortáveis para caminhar pelo passeio",
         "Fotografia é permitida, mas por favor respeite a privacidade dos outros",
         "Preste atenção à segurança alimentar ao provar caranguejo, escolha restaurantes com boas condições de higiene",
-        "A tarde e o pôr do sol são os melhores momentos para visitar",
+        "O final da tarde e a noite são os melhores momentos para visitar",
         "Você também pode visitar a Praia de Atalaia nas proximidades",
         "🌱 **Visita Civilizada**: Por favor, mantenha o ambiente limpo, não jogue lixo e mantenha conjuntamente este belo espaço costeiro"
       ] }
@@ -636,15 +652,23 @@ export const translations: Record<Locale, Translations> = {
         "🌡️ **Vantagem Climática**: Aracaju está localizada na região tropical, quente o ano todo, uma das cidades mais confortáveis do Brasil em termos climáticos",
         "Usar aplicativos de transporte (Uber/99) na cidade é mais seguro e conveniente",
         "🚗 **Dirigir e Estacionar**: Existem muitas vagas de estacionamento público ao longo da avenida costeira e da Passarela do Caranguejo, mas durante a alta temporada (dezembro a fevereiro) ou nas noites de fim de semana, o estacionamento pode ser relativamente difícil. Recomenda-se chegar cedo ou priorizar serviços de transporte por aplicativo.",
-        "Vá à tarde para desfrutar do belo pôr do sol",
+        "Vá do final da tarde à noite para desfrutar do animado clima de rua",
         "Combine com Praia de Atalaia, centro de Aracaju e outras atrações na mesma viagem",
         "O tráfego em Aracaju é relativamente menos congestionado, tornando a viagem mais conveniente"
       ] }
     },
     reviews: { 
       title: "Avaliações de Visitantes e Exploração Próxima", 
-      subtitle: "Vozes da Passarela do Caranguejo: Testemunhos Reais do Google Maps", 
+      subtitle: "A Passarela do Caranguejo no Google Maps: visão geral das avaliações",
       viewMore: "Ver Mais Avaliações no Google Maps",
+      snapshotNote: "**Instantâneo de avaliação agregada** do Google Maps (outubro de 2026). As opiniões dos visitantes destacam o conjunto de restaurantes de caranguejo, a estátua gigante de caranguejo na entrada e o animado clima de rua à noite.",
+      themesTitle: "O que os visitantes mais mencionam",
+      themes: [
+        "🔥 Dezenas de restaurantes de caranguejo e frutos do mar, do jantar completo às barraquinhas",
+        "🦀 A estátua gigante de caranguejo na entrada é o ponto de foto obrigatório",
+        "🌙 A rua fica mais movimentada do final da tarde à madrugada, com música de Forró ao vivo e luzes à beira-mar",
+        "🚶 Passeio fácil pela avenida à beira-mar, com brisa e vistas da rua"
+      ],
       nearbyTitle: "Atrações Próximas que Vale a Pena Visitar",
       nearbyIntro: "Após visitar a Passarela do Caranguejo, você pode visitar facilmente as seguintes atrações próximas:",
       nearbyItems: [
@@ -656,25 +680,25 @@ export const translations: Record<Locale, Translations> = {
     gallery: { title: "Galeria de Fotos", viewMore: "Ver Mais Fotos no Google Maps" },
     faq: { title: "Perguntas Frequentes", subtitle: "Saiba Mais Sobre a Passarela do Caranguejo", items: [
       { question: "Quais são o horário de abertura e o custo da Passarela do Caranguejo?", answer: "A Passarela do Caranguejo está aberta as 24 horas do dia e a entrada é gratuita. Os restaurantes ao longo do passeio operam geralmente das 11:00 às 23:00, os horários específicos variam conforme o restaurante." },
-      { question: "Quanto tempo é necessário para visitar a Passarela do Caranguejo?", answer: "Tempo sugerido: 1-3 horas. Você pode caminhar pelo passeio, provar comida e desfrutar do pôr do sol e vistas para o mar. Se comer nos restaurantes, pode levar mais tempo." },
+      { question: "Quanto tempo é necessário para visitar a Passarela do Caranguejo?", answer: "Tempo sugerido: 1-3 horas. Você pode caminhar pelo passeio, provar comida e sentir o clima de rua à noite e as vistas para o mar. Se comer nos restaurantes, pode levar mais tempo." },
       { question: "Qual comida especial está disponível na Passarela do Caranguejo?", answer: "A Passarela do Caranguejo é famosa por seus pratos de caranguejo. Os restaurantes aqui oferecem caranguejo preparado de diversas formas culinárias, incluindo caranguejo cozido, caranguejo grelhado, arroz com caranguejo, etc. Também há frutos do mar frescos e frutas tropicais." },
       { question: "Quais são as notas importantes para visitar a Passarela do Caranguejo?", answer: "⚠️ Proteção Solar: O sol tropical brasileiro é forte, por favor proteja-se do sol. Use sapatos confortáveis. Escolha restaurantes com boas condições de higiene. Por favor mantenha o ambiente limpo e não jogue lixo." },
       { question: "Onde fica a Passarela do Caranguejo (Crab Catwalk)?", answer: "A Passarela do Caranguejo fica no bairro de Atalaia, em Aracaju, Sergipe, Brasil, na Av. Santos Dumont, 5600 - Atalaia, Aracaju - SE, 49035-240. O Plus Code é 2W5X+6J." },
       { question: "A Passarela do Caranguejo é gratuita?", answer: "Sim. A Passarela do Caranguejo é um espaço público à beira-mar e a entrada é gratuita durante todo o ano; apenas refeições e outras compras são pagas à parte." },
-      { question: "Qual é a melhor época para visitar a Passarela do Caranguejo?", answer: "O fim da tarde é o melhor momento, pois permite aproveitar o pôr do sol e a vida noturna. A estação seca, de setembro a março, tem tempo ensolarado com pouca chuva." },
+      { question: "Qual é a melhor época para visitar a Passarela do Caranguejo?", answer: "O fim da tarde é o melhor momento, pois permite aproveitar o clima de rua à noite e a vida noturna. A estação seca, de setembro a março, tem tempo ensolarado com pouca chuva." },
       { question: "Como chegar à Passarela do Caranguejo a partir do aeroporto de Aracaju?", answer: "Do Aeroporto Santa Maria (AJU), um táxi ou aplicativo (Uber/99) leva cerca de 15-25 minutos e custa aproximadamente 20-40 Reais. Basta informar ao motorista que você vai à Passarela do Caranguejo." }
     ]},
     location: { title: "Localização e Como Visitar a Passarela do Caranguejo em Aracaju", address: "Av. Santos Dumont, 5600 - Atalaia\nAracaju - SE, 49035-240\nBrasil", openMaps: "Ver no Google Maps" },
     about: {
       title: "Sobre a Passarela do Caranguejo (Crab Catwalk)",
-      intro: "Bem-vindo à **Passarela do Caranguejo**, amplamente reconhecida como o **Crab Catwalk**. Localizada no coração de **Aracaju**, **Sergipe**, **Brasil**, este destino é um ponto central para os viajantes que visitam a região.\n\nA passarela fica ao longo da **Orla de Atalaia**, na Av. Santos Dumont, 5600 - Atalaia, e é famosa por seus restaurantes de caranguejo, brisa do mar e pores do sol espetaculares. É aberta ao público gratuitamente durante todo o ano.",
+      intro: "Bem-vindo à **Passarela do Caranguejo**, amplamente reconhecida como o **Crab Catwalk**. Localizada no coração de **Aracaju**, **Sergipe**, **Brasil**, este destino é um ponto central para os viajantes que visitam a região.\n\nA passarela fica ao longo da **Orla de Atalaia**, na Av. Santos Dumont, 5600 - Atalaia, e é famosa pelo conjunto de restaurantes de caranguejo, pela estátua gigante de caranguejo na entrada e pelo animado clima de rua à noite. É aberta ao público gratuitamente durante todo o ano.",
       breadcrumbTitle: "Hierarquia geográfica",
       nearbyCluster: "Ao visitar a **Passarela do Caranguejo**, os visitantes podem explorar facilmente marcos históricos e pontos de interesse próximos, incluindo a **Praia de Atalaia** e a **Orla de Atalaia**."
     },
     nature: {
       title: "Geografia e Ecologia: Manguezais, Marés e Caranguejos",
       subtitle: "Entender este litoral é a chave para entender a passarela",
-      intro: `A **orla de Atalaia**, onde fica a passarela, está na planície costeira a leste de Aracaju. Não se trata de uma praia tropical qualquer: a cidade abre-se para o Atlântico a leste, enquanto a oeste os rios **Sergipe** e **Vaza-Barris** encontram o mar em estuários largos. Entre rio e oceano desenvolveram-se extensos **manguezais** — e foram eles que produziram o caranguejo que tornou Aracaju conhecida.\n\nEm outras palavras, **o caranguejo que chega à sua mesa na passarela vem da floresta de lama logo atrás dela**. A partir do momento em que se sabe disso, comer caranguejo aqui deixa de ser simples consumo e passa a ser observação da natureza.`,
+      intro: `A **orla de Atalaia**, onde fica a passarela, está na planície costeira a leste de Aracaju. Não se trata de uma praia tropical qualquer: a cidade abre-se para o Atlântico a leste, enquanto a oeste os rios **Sergipe** e **Vaza-Barris** encontram o mar em estuários largos. Entre rio e oceano desenvolveram-se extensos **manguezais** — e foram eles que produziram o caranguejo que tornou Aracaju conhecida.\n\nEm outras palavras, **o caranguejo que chega à sua mesa na passarela vem da floresta de lama logo atrás dela**. Saber disso permite ler a ecologia costeira por trás do prato enquanto se come — a passarela em si é uma rua de gastronomia, não um mirante para observar caranguejos na lama.`,
       items: [
         { title: "① Manguezais: o berçário do litoral", content: "Manguezais são formações vegetais lenhosas tolerantes ao sal, típicas de zonas entremarés tropicais e subtropicais. Suas raízes-escora e raízes respiratórias retêm sedimento, dissipam a energia das ondas e oferecem abrigo a peixes juvenis, camarões, caranguejos e moluscos. Sergipe abriga áreas de manguezal entre as mais importantes do Nordeste brasileiro, e os estuários ao redor de Aracaju fazem parte delas. Manguezais são também ecossistemas de 'carbono azul' extremamente eficientes — estocam muito mais carbono por hectare do que a maioria das florestas terrestres, o que faz da sua proteção também uma ação climática." },
         { title: "② Marés semidiurnas: um ritmo duas vezes por dia", content: "Este trecho do litoral tem **marés semidiurnas**, com cerca de duas preamares e duas baixa-mares por dia e amplitude geralmente entre 1,5 e 2,5 metros. Na preamar as raízes respiratórias ficam submersas e os caranguejos recolhem-se às tocas; na baixa-mar a lama fica exposta, os caranguejos saem para se alimentar e os catadores de caranguejo entram no manguezal. O nível da água ao lado da passarela é a janela mais direta para observar esse ritmo." },
@@ -689,7 +713,7 @@ export const translations: Record<Locale, Translations> = {
     culture: {
       title: "História e Cultura do Caranguejo",
       subtitle: "De uma cidade planejada a um ícone gastronômico regional",
-      intro: `Para entender a passarela é preciso entender primeiro a cidade ao seu redor. **Aracaju foi fundada em 1855 e é a primeira cidade brasileira construída segundo um plano único e unificado.** Para fugir do porto assoreado da antiga capital, São Cristóvão, o presidente da província, Inácio Barbosa, traçou do zero uma nova capital na planície entre os rios Sergipe e Vaza-Barris, com malha ortogonal que ainda hoje define o centro, incluindo as avenidas batizadas com datas.\n\nA **Passarela do Caranguejo** é o resultado do crescimento dessa cidade em direção ao mar. Como trecho mais representativo da **Orla de Atalaia**, ela condensa os dois símbolos que definem Aracaju — o oceano e o caranguejo — em um único passeio de madeira.`,
+      intro: `Para entender a passarela é preciso entender primeiro a cidade ao seu redor. **Aracaju foi fundada em 1855 e é a primeira cidade brasileira construída segundo um plano único e unificado.** Para fugir do porto assoreado da antiga capital, São Cristóvão, o presidente da província, Inácio Barbosa, traçou do zero uma nova capital na planície entre os rios Sergipe e Vaza-Barris, com malha ortogonal que ainda hoje define o centro, incluindo as avenidas batizadas com datas.\n\nA **Passarela do Caranguejo** é o resultado do crescimento dessa cidade em direção ao mar. Como trecho mais representativo da **Orla de Atalaia**, ela condensa os dois símbolos que definem Aracaju — o oceano e o caranguejo — em um único trecho à beira-mar.`,
       items: [
         { title: "① Orla de Atalaia: a sala de estar da cidade", content: "A Orla de Atalaia é o principal espaço público à beira-mar de Aracaju, com cerca de 6 km, ligando praias, praças, equipamentos esportivos e áreas de restaurantes. Não foi construída de uma só vez: com a expansão da cidade para leste e sucessivas requalificações da orla, uma simples via costeira tornou-se o lugar onde os moradores correm ao amanhecer, caminham ao entardecer e reúnem a família nos fins de semana. A Passarela do Caranguejo é o trecho mais movimentado." },
         { title: "② O caranguejo e a identidade sergipana", content: "Em Sergipe o caranguejo é mais do que um prato: é marca de identidade local. Com estuários e manguezais extensos, a cata do caranguejo é há muito um ofício tradicional importante no litoral, organizado em torno de famílias e transmitido por gerações. O preparo clássico é a **caranguejada**, cozida lentamente com tomate, cebola, leite de coco e temperos, servida com **martelinho e tábua de madeira**. O próprio cliente quebra a carapaça, e o som dos martelos se torna a trilha sonora característica de uma noite na passarela." },

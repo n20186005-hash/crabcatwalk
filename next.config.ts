@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   env: {
-    CURRENT_SITE_DOMAIN: process.env.CURRENT_SITE_DOMAIN || "crabcatwalk.com",
+    CURRENT_SITE_DOMAIN: process.env.CURRENT_SITE_DOMAIN || "www.crabcatwalk.com",
   },
 };
 

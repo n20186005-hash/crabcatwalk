@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "crabcatwalk.com"}`;
+  const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || "www.crabcatwalk.com"}`;
 
   return {
     rules: [

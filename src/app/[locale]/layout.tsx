@@ -32,7 +32,7 @@ const localeConfig: Record<string, { htmlLang: string; ogLocale: string }> = {
 // TDK：标题必须同时出现「当地官方葡语名 + 英文名」，并带上高意图词（餐厅 / 攻略）。
 // 搜索数据显示纯英文名或纯葡语名都会造成语言割裂，双语并列可同时承接两边的查询。
 const TITLES: Record<string, string> = {
-  pt: `${SITE.shortName} (${SITE.fullName}) ${SITE.city}: Guia & Restaurantes`,
+  pt: `${SITE.shortName} em ${SITE.city}: Guia 2026`,
   en: `${SITE.fullName} (${SITE.shortName}) ${SITE.city}: Restaurants & Guide`,
   zh: `${SITE.nameZh}（${SITE.shortName}）${SITE.cityZh}：餐厅、攻略与游玩指南`,
 };
@@ -51,7 +51,7 @@ const SITE_NAMES: Record<string, string> = {
 
 // 描述里必须出现「具体地址 + 螃蟹美食 + 怎么去」，这三项是游客点击前最想确认的信息
 const DESCRIPTIONS: Record<string, string> = {
-  pt: `Visite a ${SITE.shortName} (${SITE.fullName}) na ${SITE.streetAddress}, ${SITE.city} - ${SITE.stateCode}. Veja os melhores restaurantes de caranguejo, o caranguejo gigante, o pôr do sol e como chegar.`,
+  pt: `Conheça a ${SITE.shortName}, na ${SITE.streetAddress}, ${SITE.city} - ${SITE.stateCode}: onde fica, como chegar, o caranguejo gigante, restaurantes e dicas para visitar.`,
   en: `Visit ${SITE.fullName} (${SITE.shortName}) at ${SITE.streetAddress}, ${SITE.city} - ${SITE.stateCode}. Find the best crab restaurants, the giant crab statue, sunset spots and how to get there.`,
   zh: `${SITE.nameZh}（${SITE.shortName} / ${SITE.fullName}）位于${SITE.countryNameZh}${SITE.cityZh} ${SITE.streetAddress}。查看最佳蟹肉餐厅、巨型螃蟹雕像、日落观景点与交通指南。`,
 };

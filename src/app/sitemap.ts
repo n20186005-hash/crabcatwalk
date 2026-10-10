@@ -1,49 +1,56 @@
 import { MetadataRoute } from 'next';
+import { TOPIC_SLUGS } from "@/i18n/topics";
 
 export const dynamic = 'force-static';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || 'crabcatwalk.com'}`;
+const LOCALES = ['pt', 'en', 'zh'] as const;
+type Locale = (typeof LOCALES)[number];
 
-  // 每个语言页面都要声明完整的一组 hreflang，并包含 x-default，
-  // 否则 Google 无法把「语言入口页 + 三个语言版本」识别为同一组。
-  const languages = {
-    pt: `${baseUrl}/pt`,
-    en: `${baseUrl}/en`,
-    zh: `${baseUrl}/zh`,
-    'x-default': `${baseUrl}/`,
-  };
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = `https://${process.env.CURRENT_SITE_DOMAIN || 'www.crabcatwalk.com'}`;
+
+  function langAlternates(path: string) {
+    return {
+      pt: `${baseUrl}/pt${path}`,
+      en: `${baseUrl}/en${path}`,
+      zh: `${baseUrl}/zh${path}`,
+      'x-default': `${baseUrl}/pt${path}`,
+    };
+  }
 
   const lastModified = new Date();
+  const entries: MetadataRoute.Sitemap = [];
 
-  return [
-    {
-      url: `${baseUrl}/`,
+  // 首页（根 / 与 /pt 同内容，x-default 指向葡语版本）
+  entries.push({
+    url: `${baseUrl}/`,
+    lastModified,
+    changeFrequency: 'weekly',
+    priority: 1,
+    alternates: { languages: langAlternates('') },
+  });
+  for (const locale of LOCALES) {
+    entries.push({
+      url: `${baseUrl}/${locale}`,
       lastModified,
       changeFrequency: 'weekly',
-      priority: 1,
-      alternates: { languages },
-    },
-    {
-      url: `${baseUrl}/pt`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 1,
-      alternates: { languages },
-    },
-    {
-      url: `${baseUrl}/en`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 1,
-      alternates: { languages },
-    },
-    {
-      url: `${baseUrl}/zh`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-      alternates: { languages },
-    },
-  ];
+      priority: locale === 'pt' ? 1 : 0.9,
+      alternates: { languages: langAlternates('') },
+    });
+  }
+
+  // 4 个长尾专题页 × 3 语种
+  for (const slug of TOPIC_SLUGS) {
+    for (const locale of LOCALES) {
+      entries.push({
+        url: `${baseUrl}/${locale}/${slug}`,
+        lastModified,
+        changeFrequency: 'monthly',
+        priority: 0.7,
+        alternates: { languages: langAlternates(`/${slug}`) },
+      });
+    }
+  }
+
+  return entries;
 }

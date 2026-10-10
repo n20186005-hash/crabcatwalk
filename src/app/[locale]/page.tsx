@@ -13,6 +13,7 @@ import { TideSection } from "@/components/TideSection";
 import galleryImagesData from "@/gallery-data.json";
 import { SITE } from "@/i18n/site";
 import { renderText } from "@/lib/text";
+import { TopicLinks } from "@/components/TopicLinks";
 
 // Temporary: using minimal translations for build
 // import { translations } from "@/i18n/translations";
@@ -20,14 +21,9 @@ import { renderText } from "@/lib/text";
 
 const MAPS_URL = SITE.mapsShareUrl;
 
-const GOOGLE_REVIEWS = [
-  { name: "Carlos M.", avatar: "CM", rating: 5, date: "2025-03-10", text: "A Passarela do Caranguejo é incrível! Os restaurantes servem os melhores pratos de caranguejo de Aracaju. A vista do pôr do sol é espetacular." },
-  { name: "Sarah J.", avatar: "SJ", rating: 5, date: "2025-02-15", text: "Amazing seaside walkway in Aracaju. The crab dishes are delicious and the sunset views are breathtaking. A must-visit spot in Brazil." },
-  { name: "María L.", avatar: "ML", rating: 5, date: "2025-01-20", text: "Hermoso paseo marítimo en Aracaju. La comida es deliciosa y la vista al mar es preciosa. Muy recomendable para turistas." },
-  { name: "张伟", avatar: "张", rating: 5, date: "2024-12-10", text: "蟹步道是阿拉卡茹最美的海滨景点之一。这里的蟹肉料理非常美味，日落景色更是令人难忘。" },
-  { name: "João P.", avatar: "JP", rating: 4, date: "2024-11-25", text: "Ótimo lugar para passear e comer frutos do mar. A Passarela do Caranguejo é um ícone de Aracaju. Recomendo visitar no final da tarde." },
-  { name: "Emma W.", avatar: "EW", rating: 5, date: "2024-10-15", text: "Beautiful boardwalk with amazing ocean views. The crab restaurants are fantastic and the atmosphere is very tropical and relaxing." }
-];
+// 评价仅以聚合快照形式展示：评分与数量同步自 Google 地图（2026-10），
+// 不逐条引用具名评价，以避免无法核实的引述内容。
+const REVIEWS_UPDATED = "2026-10";
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -557,7 +553,7 @@ function BestTimeToVisit() {
                 style={{ width: "100%", height: "auto", display: "block" }}
               />
             </div>
-            <p style={{ textAlign: "center", fontSize: "0.95rem", color: "var(--color-earth-soft)", fontWeight: 600 }}>{locale === "zh" ? "壮丽的日落景色" : locale === "pt" ? "Vista espetacular do pôr do sol" : "Spectacular sunset view"}</p>
+            <p style={{ textAlign: "center", fontSize: "0.95rem", color: "var(--color-earth-soft)", fontWeight: 600 }}>{locale === "zh" ? "傍晚的街区灯光与海风" : locale === "pt" ? "Luzes da rua ao entardecer e brisa do mar" : "Evening street lights and sea breeze"}</p>
           </div>
         </div>
       </ScrollReveal>
@@ -824,28 +820,37 @@ function Reviews() {
         <div className="section-divider" />
       </ScrollReveal>
       <ScrollReveal>
-        <div className="reviews-grid" style={{ marginBottom: "4rem" }}>
-          {GOOGLE_REVIEWS.map((review, i) => (
-            <div className="review-card" key={i}>
-              <div className="review-header">
-                <div className="review-avatar">{review.avatar}</div>
-                <div className="review-info">
-                  <div className="review-name">{review.name}</div>
-                  <div className="review-date">{review.date}</div>
+        <div className="reviews-snapshot" style={{ marginBottom: "4rem", display: "grid", gap: "1.5rem", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
+          <div className="review-card">
+            <div style={{ display: "flex", alignItems: "baseline", gap: "0.75rem", marginBottom: "0.5rem" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontSize: "3rem", fontWeight: 700, color: "var(--color-gold)", lineHeight: 1 }}>{SITE.ratingValue}</div>
+              <div>
+                <div style={{ color: "var(--color-gold)", fontSize: "1.1rem", letterSpacing: "2px" }}>{"★".repeat(5)}</div>
+                <div style={{ fontSize: "0.9rem", color: "var(--color-earth-soft)" }}>
+                  {Number(SITE.reviewCount).toLocaleString("en-US")} {t.rating.reviews}
                 </div>
-                <div className="review-rating">
-                  {"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)}
-                </div>
-              </div>
-              <p className="review-text">{review.text}</p>
-              <div className="review-source">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#4285F4"/>
-                </svg>
-                Google
               </div>
             </div>
-          ))}
+            <p style={{ fontSize: "0.9rem", color: "var(--color-earth-soft)", margin: 0, whiteSpace: "pre-line" }}>
+              {renderText(t.reviews.snapshotNote)}
+            </p>
+            <div className="review-source" style={{ marginTop: "0.75rem" }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#4285F4"/>
+              </svg>
+              Google · {REVIEWS_UPDATED}
+            </div>
+          </div>
+          <div className="review-card">
+            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "1.15rem", fontWeight: 600, color: "var(--color-deep)", marginBottom: "0.75rem" }}>
+              {t.reviews.themesTitle}
+            </h4>
+            <ul style={{ paddingLeft: "1.1rem", color: "var(--color-earth-soft)", lineHeight: "1.8", margin: 0 }}>
+              {t.reviews.themes.map((item: string, i: number) => (
+                <li key={i}>{renderText(item)}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </ScrollReveal>
       
@@ -1073,6 +1078,7 @@ export function LocaleHome({ locale }: { locale: SiteLocale }) {
       <FAQ />
       <Location />
       <SourcesSection />
+      <TopicLinks />
       <Footer />
     </LangProvider>
   );
