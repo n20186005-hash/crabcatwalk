@@ -1,5 +1,5 @@
 /* Crab Catwalk — Service Worker (PWA offline support) */
-const CACHE_NAME = "crabcatwalk-v1";
+const CACHE_NAME = "crabcatwalk-v2";
 const PRECACHE_URLS = [
   "/",
   "/en/",
@@ -7,7 +7,7 @@ const PRECACHE_URLS = [
   "/zh/",
   "/manifest.webmanifest",
   "/icon.svg",
-  "/gallery/crab-catwalk (11).jpg",
+  "/gallery/crab-catwalk-11.jpg",
 ];
 
 self.addEventListener("install", (event) => {
