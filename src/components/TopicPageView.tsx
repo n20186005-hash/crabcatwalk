@@ -28,8 +28,8 @@ function TopicFooter() {
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem 1.5rem", marginBottom: "1.25rem" }}>
           {t.footer.links.map((link, i) => (
-            <a key={i} href={`/${locale}${link.href}`} style={{ color: "var(--color-cream)", opacity: 0.85, textDecoration: "none", fontSize: "0.95rem" }}>
-              {renderText(link.label)}
+            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-cream)", opacity: 0.85, textDecoration: "none", fontSize: "0.95rem" }}>
+              {renderText(link.name)}
             </a>
           ))}
           <a href={`/${locale}/${TOPIC_SLUGS[0]}`} style={{ color: "var(--color-cream)", opacity: 0.85, textDecoration: "none", fontSize: "0.95rem" }}>
@@ -37,7 +37,7 @@ function TopicFooter() {
           </a>
         </div>
         <p style={{ fontSize: "0.85rem", opacity: 0.6, margin: 0 }}>
-          {renderText(t.footer.copyright)} · {renderText(t.footer.disclaimer)}
+          {renderText(t.footer.text)}
         </p>
       </div>
     </footer>
@@ -59,7 +59,7 @@ function FaqPageJsonLd({ content }: { content: TopicContent }) {
 }
 
 function View({ locale, content }: { locale: TopicLocale; content: TopicContent }) {
-  const otherSlugs = TOPIC_SLUGS.filter((s) => s !== slug);
+  const otherSlugs = TOPIC_SLUGS.filter((s) => s !== content.slug);
   return (
     <LangProvider initialLocale={locale}>
       <TopicNav />
